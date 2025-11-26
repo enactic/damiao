@@ -103,6 +103,12 @@ const config: Config = {
           label: 'Products',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'recyclingSidebar',
+          position: 'left',
+          label: 'Recycling',
+        },
+        {
           type: 'localeDropdown',
         },
       ],
