@@ -90,10 +90,10 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'DAMIAO',
+      // title: 'DAMIAO',
       logo: {
         alt: 'DAMIAO Logo',
-        src: 'img/xxx.svg',
+        src: 'img/logo.svg',
       },
       items: [
         {
