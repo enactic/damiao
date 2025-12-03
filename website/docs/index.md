@@ -2,6 +2,6 @@
 sidebar_position: 1
 ---
 
-# DAMIAO Motor
+# DAMIAOモーター
 
-DAMIAO Motor - The ultimate choice for high-precision and high-stability robot joint motors.
+DAMIAO モーター - 高精度・高安定性のロボットジョイント用モーター。
