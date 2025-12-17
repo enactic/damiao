@@ -704,7 +704,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
 
 <table>
   <thead>
-    <tr style={{ background: '#B5C7EA' }}>
+    <tr class="header-register-list-and-ranges">
       <th>アドレス<br />(HEX)</th>
       <th>アドレス<br />(DEC)</th>
       <th>変数</th>
@@ -715,7 +715,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
     </tr>
   </thead>
   <tbody>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x00</td>
       <td>0</td>
       <td>UV_Value</td>
@@ -724,7 +724,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(10.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x01</td>
       <td>1</td>
       <td>KT_Value</td>
@@ -733,7 +733,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x02</td>
       <td>2</td>
       <td>OT_Value</td>
@@ -742,7 +742,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[80.0,200)</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x03</td>
       <td>3</td>
       <td>OC_Value</td>
@@ -751,7 +751,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,1.0)</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x04</td>
       <td>4</td>
       <td>ACC</td>
@@ -760,7 +760,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,fmax)</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x05</td>
       <td>5</td>
       <td>DEC</td>
@@ -769,7 +769,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[-fmax,0.0)</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x06</td>
       <td>6</td>
       <td>MAX_SPD</td>
@@ -778,7 +778,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x07</td>
       <td>7</td>
       <td>MST_ID</td>
@@ -787,7 +787,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[0,0x7FF]</td>
       <td>uint32</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x0A</td>
       <td>8</td>
       <td>ESC_ID</td>
@@ -796,7 +796,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[0,0x7FF]</td>
       <td>uint32</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x09</td>
       <td>9</td>
       <td>TIMEOUT</td>
@@ -805,7 +805,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[0,2^32-1]</td>
       <td>uint32</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x0A</td>
       <td>10</td>
       <td>CTRL_MODE</td>
@@ -815,7 +815,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>uint32</td>
     </tr>
 
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x0B</td>
       <td>11</td>
       <td>ダンピング</td>
@@ -824,7 +824,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x0C</td>
       <td>12</td>
       <td>慣性</td>
@@ -833,7 +833,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x0D</td>
       <td>13</td>
       <td>hw_ver</td>
@@ -842,7 +842,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>uint32</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x0E</td>
       <td>14</td>
       <td>sw_ver</td>
@@ -851,7 +851,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>uint32</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x0F</td>
       <td>15</td>
       <td>SN</td>
@@ -860,7 +860,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>uint32</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x10</td>
       <td>16</td>
       <td>NPP</td>
@@ -869,7 +869,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>uint32</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x11</td>
       <td>17</td>
       <td>Rs</td>
@@ -878,7 +878,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x12</td>
       <td>18</td>
       <td>Ls</td>
@@ -887,7 +887,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x13</td>
       <td>19</td>
       <td>Flux</td>
@@ -896,7 +896,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x14</td>
       <td>20</td>
       <td>Gr</td>
@@ -906,7 +906,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>float</td>
     </tr>
 
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x15</td>
       <td>21</td>
       <td>PMAX</td>
@@ -915,7 +915,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x16</td>
       <td>22</td>
       <td>VMAX</td>
@@ -924,7 +924,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x17</td>
       <td>23</td>
       <td>TMAX</td>
@@ -933,7 +933,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x18</td>
       <td>24</td>
       <td>I_BW</td>
@@ -942,7 +942,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[100.0,1.0e4]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x19</td>
       <td>25</td>
       <td>KP_ASR</td>
@@ -951,7 +951,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x1A</td>
       <td>26</td>
       <td>KI_ASR</td>
@@ -960,7 +960,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x1B</td>
       <td>27</td>
       <td>KP_APR</td>
@@ -969,7 +969,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x1C</td>
       <td>28</td>
       <td>KI_APR</td>
@@ -978,7 +978,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[0.0,fmax]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x1D</td>
       <td>29</td>
       <td>OV_Value</td>
@@ -987,7 +987,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>TBD</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x1E</td>
       <td>30</td>
       <td>GREF</td>
@@ -996,7 +996,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,1.0]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x1F</td>
       <td>31</td>
       <td>Deta</td>
@@ -1005,7 +1005,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[1.0,30.0]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x20</td>
       <td>32</td>
       <td>V_BW</td>
@@ -1014,7 +1014,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,500.0)</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x21</td>
       <td>33</td>
       <td>IQ_c1</td>
@@ -1023,7 +1023,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>[100.0,1.0e4]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x22</td>
       <td>34</td>
       <td>VL_c1</td>
@@ -1032,7 +1032,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>(0.0,1.0e4]</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#F4B7BE' }}>
+    <tr class="tr-register-list-range">
       <td>0x23</td>
       <td>35</td>
       <td>can_br</td>
@@ -1042,7 +1042,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>uint32</td>
     </tr>
 
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-range">
       <td>0x24</td>
       <td>36</td>
       <td>sub_ver</td>
@@ -1051,7 +1051,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>uint32</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x32</td>
       <td>50</td>
       <td>u_off</td>
@@ -1060,7 +1060,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x33</td>
       <td>51</td>
       <td>v_off</td>
@@ -1069,7 +1069,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x34</td>
       <td>52</td>
       <td>k1</td>
@@ -1078,7 +1078,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x35</td>
       <td>53</td>
       <td>k2</td>
@@ -1087,7 +1087,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x36</td>
       <td>54</td>
       <td>m_off</td>
@@ -1096,7 +1096,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x37</td>
       <td>55</td>
       <td>dir</td>
@@ -1105,7 +1105,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x50</td>
       <td>80</td>
       <td>p_m</td>
@@ -1114,7 +1114,7 @@ DAMIAOデバッグアシスタントでモーターのパラメータ設定や�
       <td>/</td>
       <td>float</td>
     </tr>
-    <tr style={{ background: '#C7E4B3' }}>
+    <tr class="tr-register-list-no-range">
       <td>0x51</td>
       <td>81</td>
       <td>xout</td>
