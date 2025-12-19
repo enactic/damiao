@@ -6,7 +6,7 @@ import BlockImage from '@site/src/components/BlockImage';
 
 本サイト全体のライセンスはApache License 2.0ですが、本資料にはライセンスを設定しません。
 
-<BlockImage src="products/dm-j8009P-2ec-v1.0/image1.jpeg" width="50%" />
+<BlockImage src="products/dm-j8009p-2ec-v1.0/image1.jpeg" width="50%" />
 
 | 日付 | バージョン | 変更内容 |
 |--|--|--|
@@ -67,21 +67,21 @@ DAMIAOは深セン市達妙科技有限公司の商標です。
   <tbody>
     <tr>
       <td>電源インターフェース-1</td>
-      <td><BlockImage src="products/dm-j8009P-2ec-v1.0/image2.jpeg" /></td>
+      <td><BlockImage src="products/dm-j8009p-2ec-v1.0/image2.jpeg" /></td>
       <td>
         XT30オス-メス電源ケーブルで電源を接続し、定格電圧24V（24-48V対応）でモーターに給電します。
       </td>
     </tr>
     <tr>
       <td>CAN通信端子-2</td>
-      <td><BlockImage src="products/dm-j8009P-2ec-v1.0/image3.jpeg" /></td>
+      <td><BlockImage src="products/dm-j8009p-2ec-v1.0/image3.jpeg" /></td>
       <td>
         CAN通信端子を介して外部制御機器を接続し、CAN制御コマンドを受信し、モーターの状態情報をフィードバックします。
       </td>
     </tr>
     <tr>
       <td>デバッグ用シリアルポート-3</td>
-      <td><BlockImage src="products/dm-j8009P-2ec-v1.0/image4.jpeg" /></td>
+      <td><BlockImage src="products/dm-j8009p-2ec-v1.0/image4.jpeg" /></td>
       <td>
         GH1.25接続ケーブル-3ピンを介し、USB-CANデバッグツール（または汎用USB-シリアル変換モジュール）でPCに接続します。
         DAMIAOデバッグアシスタントによりモーターのパラメータ設定やファームウェア更新等を行います。
@@ -94,7 +94,7 @@ DAMIAOは深セン市達妙科技有限公司の商標です。
 
 モーター取付穴のサイズと位置を参照し、対応する装置にモーターを取り付けてください。
 
-<BlockImage src="products/dm-j8009P-2ec-v1.0/image5.jpeg" width="90%" />
+<BlockImage src="products/dm-j8009p-2ec-v1.0/image5.jpeg" width="90%" />
 
 ## インジケーターランプの状態
 
@@ -137,7 +137,7 @@ MITモードはオリジナルMITモードとの互換性を考慮して設計�
 ESCは受信したCANデータを制御変数に変換して演算し、トルク値を電流ループの電流指令値として算出します。
 電流ループはその制御法則に基づき、最終的に所定のトルク電流に到達します。その制御フロー図は以下の通りです：
 
-<BlockImage src="products/dm-j8009P-2ec-v1.0/image6.jpeg" width="80%" />
+<BlockImage src="products/dm-j8009p-2ec-v1.0/image6.jpeg" width="80%" />
 
 MITモデルから様々な制御モードを導出できます。
 例えばKp=0、Kd≠0の場合、v_desを指定すれば等速回転を実現できます。
@@ -150,7 +150,7 @@ Kp=0、Kd=0の場合、t_ffを指定すれば所定のトルク出力を実現�
 位置カスケード制御は三環連鎖制御モードであり、位置ループが最外周ループとして機能し、その出力が速度ループの指令値となります。
 速度ループの出力は内側電流ループの指令値として用いられ、実際の電流出力を制御する。制御ブロック図は下図の通りです：
 
-<BlockImage src="products/dm-j8009P-2ec-v1.0/image7.jpeg" width="90%" />
+<BlockImage src="products/dm-j8009p-2ec-v1.0/image7.jpeg" width="90%" />
 
 p_des は制御目標位置、v_des は動作過程における最大絶対速度値を制限するパラメータです。
 
@@ -164,7 +164,7 @@ p_des は制御目標位置、v_des は動作過程における最大絶対速�
 
 速度モードはモーターを設定速度で安定運転させることができ、その制御ブロック図は以下の通りです：
 
-<BlockImage src="products/dm-j8009P-2ec-v1.0/image8.jpeg" width="70%" />
+<BlockImage src="products/dm-j8009p-2ec-v1.0/image8.jpeg" width="70%" />
 
 **注意：v_desの単位はrad/s、データ型はfloatです。**
 **デバッグアシスタントによる自動パラメータ計算を利用する場合、減衰係数を0以外の正の数（通常2.0～10.0の範囲）に設定する必要があります。**
