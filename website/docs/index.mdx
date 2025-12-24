@@ -1,0 +1,34 @@
+---
+sidebar_position: 1
+---
+
+# DAMIAOモーター
+
+DAMIAO モーター - 高精度・高安定性のロボットジョイント用モーター。
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useDocById} from '@docusaurus/plugin-content-docs/client';
+
+export const ProductsList = () => {
+  const productDocIds = [
+    'products/dm-j4310-2ec-v1.1',
+    'products/dm-j4340-2ec-v1.0',
+    'products/dm-j4340p-2ec-v1.0',
+    'products/dm-j8009p-2ec-v1.0',
+  ];
+  const items = productDocIds.map((id) => {
+    const doc = useDocById(id);
+    return {
+      type: 'link',
+      label: doc.title,
+      href: doc.id,
+      docId: doc.id,
+      description: doc.description,
+    };
+  })
+  return <DocCardList items={items} />;
+};
+
+<ProductsList />
+```
