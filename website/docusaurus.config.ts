@@ -96,8 +96,7 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'productsSidebar',
+          to: 'products',
           position: 'left',
           label: 'Products',
         },
