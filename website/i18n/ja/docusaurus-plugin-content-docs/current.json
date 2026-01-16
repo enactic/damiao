@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "次",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Products": {
+    "message": "製品",
+    "description": "The label for category 'Products' in sidebar 'docs'"
+  }
+}

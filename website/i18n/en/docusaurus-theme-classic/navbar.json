@@ -1,0 +1,10 @@
+{
+  "item.label.Products": {
+    "message": "Product",
+    "description": "Navbar item with label Products"
+  },
+  "item.label.Recycling": {
+    "message": "Recycling",
+    "description": "Navbar item with label Recycling"
+  }
+}
