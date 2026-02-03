@@ -98,7 +98,7 @@ const config: Config = {
         {
           to: 'products/hardware',
           position: 'left',
-          label: 'Products',
+          label: 'Hardware',
         },
         {
           to: 'products/software',

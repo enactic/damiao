@@ -31,7 +31,7 @@ const sidebars: SidebarsConfig = {
   docs: [
     {
       type: 'category',
-      label: 'Products',
+      label: 'Hardware',
       link: {
         type: 'doc',
         id: 'products/hardware/index',

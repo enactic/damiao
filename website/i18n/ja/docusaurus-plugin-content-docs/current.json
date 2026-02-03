@@ -3,9 +3,9 @@
     "message": "次",
     "description": "The label for version current"
   },
-  "sidebar.docs.category.Products": {
+  "sidebar.docs.category.Hardware": {
     "message": "製品",
-    "description": "The label for category 'Products' in sidebar 'docs'"
+    "description": "The label for category 'Hardware' in sidebar 'docs'"
   },
   "sidebar.docs.category.Software": {
     "message": "関連ツール",

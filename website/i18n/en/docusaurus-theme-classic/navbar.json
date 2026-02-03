@@ -1,7 +1,7 @@
 {
-  "item.label.Products": {
-    "message": "Product",
-    "description": "Navbar item with label Products"
+  "item.label.Hardware": {
+    "message": "Hardware",
+    "description": "Navbar item with label Hardware"
   },
   "item.label.Software": {
     "message": "Software",

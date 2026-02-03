@@ -1,7 +1,7 @@
 {
-  "item.label.Products": {
+  "item.label.Hardware": {
     "message": "製品",
-    "description": "Navbar item with label Products"
+    "description": "Navbar item with label Hardware"
   },
   "item.label.Software": {
     "message": "関連ツール",
