@@ -41,6 +41,7 @@ const sidebars: SidebarsConfig = {
         'products/dm-j4340-2ec-v1.0',
         'products/dm-j4340p-2ec-v1.0',
         'products/dm-j8009p-2ec-v1.0',
+        'products/dm-usbcu1',
       ],
     },
   ],
