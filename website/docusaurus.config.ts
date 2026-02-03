@@ -124,7 +124,7 @@ const config: Config = {
           items: [
             {
               label: 'Products',
-              to: '/products',
+              to: '/products/hardware',
             },
           ],
         },
