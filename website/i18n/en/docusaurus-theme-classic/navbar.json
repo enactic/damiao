@@ -3,6 +3,10 @@
     "message": "Product",
     "description": "Navbar item with label Products"
   },
+  "item.label.Software": {
+    "message": "Software",
+    "description": "Navbar item with label Software"
+  },
   "item.label.Recycling": {
     "message": "Recycling",
     "description": "Navbar item with label Recycling"

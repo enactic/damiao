@@ -2,5 +2,9 @@
   "sidebar.docs.category.Products": {
     "message": "Products",
     "description": "The label for category 'Products' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Software": {
+    "message": "Software",
+    "description": "The label for category 'Software' in sidebar 'docs'"
   }
 }

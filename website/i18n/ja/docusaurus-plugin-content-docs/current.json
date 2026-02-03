@@ -6,5 +6,9 @@
   "sidebar.docs.category.Products": {
     "message": "製品",
     "description": "The label for category 'Products' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Software": {
+    "message": "関連ツール",
+    "description": "The label for category 'Software' in sidebar 'docs'"
   }
 }
