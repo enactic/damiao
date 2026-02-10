@@ -31,17 +31,28 @@ const sidebars: SidebarsConfig = {
   docs: [
     {
       type: 'category',
-      label: 'Products',
+      label: 'Hardware',
       link: {
         type: 'doc',
-        id: 'products/index',
+        id: 'products/hardware/index',
       },
       items: [
-        'products/dm-j4310-2ec-v1.1',
-        'products/dm-j4340-2ec-v1.0',
-        'products/dm-j4340p-2ec-v1.0',
-        'products/dm-j8009p-2ec-v1.0',
-        'products/dm-usbcu1',
+        'products/hardware/dm-j4310-2ec-v1.1',
+        'products/hardware/dm-j4340-2ec-v1.0',
+        'products/hardware/dm-j4340p-2ec-v1.0',
+        'products/hardware/dm-j8009p-2ec-v1.0',
+        'products/hardware/dm-usbcu1',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Software',
+      link: {
+        type: 'doc',
+        id: 'products/software/index',
+      },
+      items: [
+         'products/software/usb-can-conversion-software',
       ],
     },
   ],

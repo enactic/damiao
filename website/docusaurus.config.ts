@@ -96,9 +96,14 @@ const config: Config = {
       },
       items: [
         {
-          to: 'products',
+          to: 'products/hardware',
           position: 'left',
-          label: 'Products',
+          label: 'Hardware',
+        },
+        {
+          to: 'products/software',
+          position: 'left',
+          label: 'Software',
         },
         {
           type: 'docSidebar',
@@ -119,7 +124,7 @@ const config: Config = {
           items: [
             {
               label: 'Products',
-              to: '/products',
+              to: '/products/hardware',
             },
           ],
         },

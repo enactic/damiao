@@ -1,0 +1,483 @@
+---
+description: DM-USBCU1 USB-CAN変換モジュールの日本語のマニュアルです。
+---
+
+# DM-USBCU1 USB-CAN変換モジュール
+
+```mdx-code-block
+import BlockImage from '@site/src/components/BlockImage';
+```
+
+[「USBからCANフレームフォーマットへの変換（V2.0）」の原文（中国語）](/pdf/products/dm-usbcu1.pdf)
+
+本サイト全体のライセンスはApache License 2.0ですが、本資料および原文の資料にはライセンスを設定しません。
+
+## USB-CAN変換ソフトウェア
+
+USB-CAN変換ソフトウェアの使用マニュアルは<u>[こちら](/products/software/usb-can-conversion-software)</u>をご覧ください。
+
+## 仕様情報
+
+<table>
+  <tbody>
+    <tr>
+      <th>サイズ</th>
+      <td>4x2x1cm</td>
+    </tr>
+    <tr>
+      <th>モデル</th>
+      <td>DM-USBCU1</td>
+    </tr>
+    <tr>
+      <th>機器タイプ</th>
+      <td>CANバス</td>
+    </tr>
+    <tr>
+      <th>ブランド</th>
+      <td>達妙</td>
+    </tr>
+    <tr>
+      <th>製造地</th>
+      <td>中国大陸</td>
+    </tr>
+    <tr>
+      <th>適用シーン</th>
+      <td>USB-CAN変換<br />CAN解析</td>
+    </tr>
+    <tr>
+      <th>説明</th>
+      <td>
+        モジュール【V3.0】 + データケーブル + 2ピン + 3ピンセット<br />
+        CAN絶縁機能アップグレード済み
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## USBからCANフレームフォーマットへの変換（V2.0）
+
+### CANフレームデータフォーマット
+
+<table>
+  <thead>
+    <tr><th colspan="23">CANフレームデータフォーマット</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">フレームヘッダー</td>
+      <td>フレーム長</td>
+      <td>コマンド</td>
+      <td colspan="4">送信回数</td>
+      <td colspan="4">時間間隔</td>
+      <td>IDタイプ</td>
+      <td colspan="4">CAN ID</td>
+      <td>フレームタイプ</td>
+      <td>idAcc</td>
+      <td>dataAcc</td>
+      <td>len</td>
+      <td>data[len]</td>
+      <td>CRC</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data2</td>
+      <td>Data3</td>
+      <td>Data4</td>
+      <td>Data5</td>
+      <td>Data6</td>
+      <td>Data7</td>
+      <td>Data8</td>
+      <td>Data9</td>
+      <td>Data10</td>
+      <td>Data11</td>
+      <td>Data12</td>
+      <td>Data13</td>
+      <td>Data14</td>
+      <td>Data15</td>
+      <td>Data16</td>
+      <td>Data17</td>
+      <td>Data18</td>
+      <td>Data19</td>
+      <td>Data20</td>
+      <td>Data21~Data28</td>
+      <td>Data29</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td>8bit</td>
+      <td>8bit</td>
+      <td colspan="4">32bit</td>
+      <td colspan="4">16bit</td>
+      <td>8bit</td>
+      <td colspan="4">32bit</td>
+      <td>8bit</td>
+      <td></td>
+      <td></td>
+      <td>8bit</td>
+      <td>8bit * 8</td>
+      <td>8bit</td>
+    </tr>
+    <tr>
+      <td>55</td>
+      <td>AA</td>
+      <td>1e</td>
+      <td>01</td>
+      <td>01</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>0a</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>08</td>
+      <td>data[8]</td>
+      <td>crc</td>
+    </tr>
+  </tbody>
+</table>
+
+* コマンド
+  * 0x01 CANデータフレーム転送
+  * 0x02 PCとデバイスがハンドシェイク、デバイスがOKを返す
+  * 0x03 非フィードバックCAN転送、送信状態を返さない
+* IDタイプ
+  * 00 標準フレーム
+  * 01 拡張フレーム
+* フレームタイプ
+  * 00 データフレーム
+  * 01 リモートフレーム
+
+注：その他のフォーマットはシリアル転送データ
+
+例：
+
+```
+55 aa 1e 01 01 00 00 00 0a 00 00 00 00 00 00 00 00 00 08 00 00 12 23 34 45 56 67 78 89 88
+```
+
+### シリアルポートのボーレート設定コマンド
+
+<table>
+  <thead>
+    <tr><th colspan="11">シリアルポートのボーレート設定コマンド</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">フレームヘッダー</td>
+      <td colspan="4">baudrate</td>
+      <td>databit</td>
+      <td>stopbit</td>
+      <td>parity</td>
+      <td colspan="2">フレームフッター</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data2</td>
+      <td>Data3</td>
+      <td>Data4</td>
+      <td>Data5</td>
+      <td>Data6</td>
+      <td>Data7</td>
+      <td>Data8</td>
+      <td>Data9</td>
+      <td>Data10</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td colspan="4">32bit</td>
+      <td>8bit</td>
+      <td>8bit</td>
+      <td>8bit</td>
+      <td colspan="2">16bit</td>
+    </tr>
+    <tr>
+      <td>0x55</td>
+      <td>0xAA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>0xAA</td>
+      <td>0x55</td>
+    </tr>
+  </tbody>
+</table>
+
+```c
+typedef struct {
+  uint32_t baudrate; // ボーレート
+  uint8_t databit; // データビット
+  uint8_t stopbit; // ストップビット
+  uint8_t parity; // パリティ
+} Baudrate_set_data;
+```
+
+```c
+// データ長ビット設定
+// 0: 8bit
+// 1: 9bit
+switch(setdata_t->databit)
+{
+case 0u:
+  stcInitCfg.enDataLength = UsartDataBits8;
+  break;
+case 1u:
+  stcInitCfg.enDataLength = UsartDataBits9;
+  break;
+default:
+  stcInitCfg.enDataLength = UsartDataBits8;
+  break;
+}
+
+// パリティ設定
+switch(setdata_t->parity)
+{
+case 0u:
+  stcInitCfg.enParity = UsartParityNone;
+  break;
+case 1u:
+  stcInitCfg.enParity = UsartParityEven;
+  break;
+case 2u:
+  stcInitCfg.enParity = UsartParityOdd;
+  break;
+default:
+  stcInitCfg.enParity = UsartParityNone;
+  break;
+}
+
+// ストップビット設定
+switch(setdata_t->stopbit)
+{
+case 0u:
+  stcInitCfg.enStopBit = UsartOneStopBit;
+  break;
+case 1u:
+  stcInitCfg.enStopBit = UsartTwoStopBit;
+  break;
+default:
+  stcInitCfg.enStopBit = UsartTwoStopBit;
+  break;
+}
+```
+
+### CANボーレート設定コマンド
+
+<table>
+  <thead>
+    <tr><th colspan="5">CANボーレート設定コマンド</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">フレームヘッダー</td>
+      <td>インデックス</td>
+      <td colspan="2">フレームフッター</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data2</td>
+      <td>Data3</td>
+      <td>Data4</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td>8bit</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>0x55</td>
+      <td>0x05</td>
+      <td></td>
+      <td>0xAA</td>
+      <td>0x55</td>
+    </tr>
+  </tbody>
+</table>
+
+| インデックス | ボーレート | 理想CIA | 実際CIA |
+|--|--|--|--|
+| index0  | 1000kbps |   75% |   75% |
+| index1  |  800kbps |   80% |   80% |
+| index2  |  666kbps |   80% | 83.3% |
+| index3  |  500kbps | 87.5% | 87.5% |
+| index4  |  400kbps | 87.5% |   85% |
+| index5  |  250kbps | 87.5% | 87.5% |
+| index6  |  200kbps | 87.5% |   85% |
+| index7  |  125kbps | 87.5% | 87.5% |
+| index8  |  100kbps | 87.5% | 87.5% |
+| index9  |   80kbps | 87.5% | 86.5% |
+| index10 |   50kbps | 87.5% | 87.5% |
+| index11 |   40kbps | 87.5% |   85% |
+| index12 |   20kbps | 87.5% |   85% |
+| index13 |   10kbps | 87.5% |   85% |
+| index14 |    5kbps | 87.5% | 87.5% |
+
+### PCとデバイス間のハートビート
+
+<table>
+  <thead>
+    <tr><th colspan="6">PCとデバイス間のハートビート</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">フレームヘッダー</td>
+      <td colspan="2">フレームフッター</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data3</td>
+      <td>Data4</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>0x55</td>
+      <td>0x04</td>
+      <td>0xAA</td>
+      <td>0x55</td>
+    </tr>
+  </tbody>
+</table>
+
+注：CANが返すデータにおいて、CMDが00の場合、その他のCANデータは無効です。
+
+### CAN送信停止（連続送信中）
+
+<table>
+  <thead>
+    <tr><th colspan="6">CAN送信停止（連続送信中）</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">フレームヘッダー</td>
+      <td colspan="2">フレームフッター</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data3</td>
+      <td>Data4</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>0x55</td>
+      <td>0x03</td>
+      <td>0xAA</td>
+      <td>0x55</td>
+    </tr>
+  </tbody>
+</table>
+
+注：現在の連続送信を停止します。
+
+### CAN受信データフレームフォーマット
+
+<table>
+  <thead>
+    <tr><th colspan="16">CANフレームデータフォーマット</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>フレームヘッダ</td>
+      <td>コマンド</td>
+      <td>フォーマット</td>
+      <td colspan="4">CAN ID</td>
+      <td colspan="8">データ</td>
+      <td>フレームフッター</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data2</td>
+      <td>Data3</td>
+      <td>Data4</td>
+      <td>Data5</td>
+      <td>Data6</td>
+      <td>Data7</td>
+      <td>Data8</td>
+      <td>Data9</td>
+      <td>Data10</td>
+      <td>Data11</td>
+      <td>Data12</td>
+      <td>Data13</td>
+      <td>Data14</td>
+      <td>Data15</td>
+    </tr>
+    <tr>
+      <td>AA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>55</td>
+    </tr>
+  </tbody>
+</table>
+
+CANコマンド:
+* 00 ハートビート
+* 0x01 受信失敗
+* 0x11 受信成功
+* 0x02 送信失敗
+* 0x12 送信成功
+* 0x03 ボーレート設定失敗
+* 0x13 ボーレート設定成功
+
+フォーマット: データ長を含みます。
+
+データフレームタイプの詳細は以下の構造体を参照してください。
+
+```c
+// CAN 返信データフォーマット
+typedef struct // CAN送信機能関連構造体 16バイト
+{
+  uint8_t frameHeader;  // 送信フラグビット 0xAA
+  uint8_t CMD;          // CANコマンド
+  uint8_t canDataLen:6; // データ長
+  uint8_t canIde:1;     // ide: 0 標準フレーム、1 拡張フレーム
+  uint8_t canRtr:1;     // rtr: 0 データフレーム、1 リモートフレーム
+  uint32_t CANID;       // CAN ID
+  uint8_t canData[8];   // CANデータ
+  uint8_t freamEnd;     // 終了マーク 0x55
+} CAN_Fream;
+```
+
+例:
+
+```
+AA 11 08 00 00 00 00 00 01 02 03 04 05 06 07 55
+```

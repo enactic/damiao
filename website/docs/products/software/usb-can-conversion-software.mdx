@@ -1,0 +1,170 @@
+---
+title: USB-CAN変換ソフトウェア
+description: USB-CAN変換ソフトウェアの日本語のマニュアルです。
+---
+
+```mdx-code-block
+import BlockImage from '@site/src/components/BlockImage';
+```
+
+[原文の使用マニュアル（中国語）](/pdf/products/usb-can-conversion-software.pdf)
+
+本サイト全体のライセンスはApache License 2.0ですが、本資料および原文の資料にはライセンスを設定しません。
+
+# USB-CAN変換ソフトウェア使用マニュアル
+
+USB-CAN変換ソフトウェアは達妙科技が開発したソフトウェアで、デバッグモジュールを接続することでCANプロトコルパケットを可視化送信できます。
+本ソフトウェアとデバッグモジュールを併用することで、CANプロトコルデバイス（モーター、ジャイロスコープなど）のデバッグが非常に容易になります。
+
+## 1. ソフトウェアのダウンロード
+
+https://gitee.com/kit-miao/dm-tools/blob/master/USB%E8%BD%ACCAN/%E4%B8%8A%E4%BD%8D%E6%9C%BA/USB2CAN_2.0.0.3.exe
+
+こちらのURLから「USB2CAN_2.0.0.3.exe」をダウンロードしてください。
+
+<BlockImage src="products/usb-can-conversion-software/image1.png" />
+
+「Download」をクリックし、ダウンロードが完了するまでお待ちください。
+
+<BlockImage src="products/usb-can-conversion-software/image2.jpeg" />
+
+`USB2CAN_2.0.0.3.exe`を実行すると次の画面が表示されます。
+
+<BlockImage src="products/usb-can-conversion-software/image3.jpeg" />
+
+## 2. デバッグモジュール（ハードウェア）
+
+USBからCANへの変換でCANプロトコルパケットを送信するには、達妙科技公式のUSB-CAN変換モジュールとの併用が必要です。
+
+購入リンク: https://www.switch-science.com/products/10933
+
+デバッグモジュールはデータ転送機能付きType-C to USB-AケーブルでPCに接続する必要があります。
+USB-CAN変換ソフトウェアはUSBシリアルポートを使用します。
+**PCにCH340/CH341ドライバがインストールされていることを確認してください。**
+
+<BlockImage src="products/usb-can-conversion-software/image4.jpeg" />
+
+デバッグモジュールのCANインターフェースモデルはGH1.25-2pinです。
+受信機器のインターフェースに応じて配線を変更するか、変換基板を追加できます。
+
+CAN配線順序に注意してください。
+**CAN_LはCAN_Lに、CAN_HはCAN_Hに接続してください。**
+
+<BlockImage src="products/usb-can-conversion-software/image5.jpeg" />
+
+デバッグモジュールを機器に接続した後、USB-CAN変換ソフトウェアを起動します。
+
+## 3. USB-CAN変換ソフトウェアの使用
+
+### 3.1. 基本機能の使用
+
+<BlockImage src="products/usb-can-conversion-software/image6.jpeg" />
+
+1. ファイルを開く
+2. 現在の送受信データを保存
+3. 現在のすべての送受信データをクリア
+4. カウンター
+5. ファームウェア更新
+6. バージョン情報と交流グループ
+
+### 3.2. シリアルポート設定
+
+シリアルポート番号は、デバッグモジュールに接続されているCOMポートを選択してください。
+
+見つからない場合は、左下の「更新」をクリックするか、ドライバがインストールされているか確認してください。
+
+* ボーレート：921600
+* データビット：8
+* チェックビット：None
+* ストップビット：One
+
+これらのパラメータはデフォルトのままにしておいてください。
+
+設定が完了したら、左下の赤枠内のリンクをクリックしてシリアルポートを開きます。
+
+<BlockImage src="products/usb-can-conversion-software/image7.jpeg" />
+
+接続が成功すると、左下の「切断」ボタンが赤と緑で点滅します。
+
+<BlockImage src="products/usb-can-conversion-software/image8.jpeg" />
+
+### 3.3. CAN通信設定
+
+<BlockImage src="products/usb-can-conversion-software/image9.jpeg" />
+
+#### 1
+
+機器との通信に使用するボーレートを指定します。
+デフォルトは1000kbpsです。
+機器の設定ボーレートに合わせて設定してください。
+
+現在以下のボーレートに対応しています。
+
+<BlockImage src="products/usb-can-conversion-software/image10.jpeg" />
+
+対応するボーレートを選択後、「设置（設定）」をクリックして更新を完了してください。
+
+#### 2
+
+フレームID（送信ID）：デバイスに送信するIDを指定します。
+ユーザーが自由に変更可能で、単位は16進数です。
+
+#### 3
+
+送信データ：デバイスに送信する8バイトのデータです。
+ユーザーが自由に変更可能で、単位は16進数です。
+
+<BlockImage src="products/usb-can-conversion-software/image11.jpeg" />
+
+#### 4
+
+DATA递增（DATA増分）：チェックすると、送信回数が1回を超える場合、毎回送信されるデータが自動的に+1されます。
+
+例：送信データが `01 00 00 00 00 00 00 00` で送信回数が2回の場合、送信されるデータは次のとおりです。
+
+```
+01 00 00 00 00 00 00 00
+02 00 00 00 00 00 00 00
+```
+
+データが `FF` になると繰り上がります。
+
+例：送信データが `FF 00 00 00 00 00 00 00` の場合、次の送信データは `00 01 00 00 00 00 00 00`、さらに次は `01 01 00 00 00 00 00 00` になります。
+
+ID递增（ID増分）：チェックすると、送信回数が1回を超える場合、各送信フレームのIDが自動的に+1されます。
+
+#### 5
+
+发送次数（送信回数）：クリック送信後にデバイスへ送信するデータ回数を設定できます。
+定时发送（定期送信）：送信回数が1を超える場合、各送信の間隔時間を設定します。
+
+#### 6
+
+帧格式（フレームフォーマット）：標準フレームと拡張フレームから選択できます。デバイスのフレームIDに基づいて選択します。
+帧类型（フレームタイプ）：データフレームとリモートフレームから選択できます。デバイスのCANプロトコルに基づいて選択します。
+
+#### 7
+
+发送（送信）：クリックするとCANデータを送信します。
+停止：クリックすると送信を一時停止します。
+
+### 3.4. CAN送受信インターフェース
+
+クリック後、CANデータの送信が成功した場合、状態は「发送成功（送信成功）」と表示されます。
+「发送失败（送信失敗）」と表示された場合は、シリアル通信、CANケーブルの配線、受信デバイスの正常性を確認してください。
+デバイスがCANデータを返す場合、インターフェースに受信データと各種パラメータが表示されます。
+
+<BlockImage src="products/usb-can-conversion-software/image12.jpeg" />
+
+### 3.5. シリアルポート
+
+USBからCANへの変換もシリアルポート経由で送信可能で、デバッグモジュールのGH-1.25-3ピンインターフェースを介してデバイスを接続します。
+配線順序に注意し、GNDはGNDに、RXDはTXDに、TXDはRXDに接続してください。
+
+<BlockImage src="products/usb-can-conversion-software/image13.jpeg" />
+
+### 3.6. CAN負荷
+
+USBからCANへの変換により、CANバスの負荷状況をリアルタイムで確認できます。
+
+<BlockImage src="products/usb-can-conversion-software/image14.jpeg" />
