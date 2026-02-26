@@ -53,6 +53,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
          'products/software/usb-can-conversion-software',
+         'products/software/dm-debugging-tool',
       ],
     },
   ],
