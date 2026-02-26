@@ -1,0 +1,833 @@
+---
+title: DAMIAOデバッグツール
+description: デバッグツールの日本語のマニュアルです。
+---
+
+# DAMIAOデバッグツール
+
+```mdx-code-block
+import BlockImage from '@site/src/components/BlockImage';
+import InlineImage from '@site/src/components/InlineImage';
+```
+
+[原文のマニュアル（中国語）](/pdf/products/dm-debugging-tool.pdf)
+
+本サイト全体のライセンスはApache License 2.0ですが、本資料および原文の資料にはライセンスを設定しません。
+
+| 日付 | バージョン | 変更内容 |
+|--|--|--|
+| 2025.03.28 | V1.0 | 初版作成 |
+
+## 概要
+
+DAMIAOデバッグツールは、DMシリーズのモーター専用に設計されたPCアプリケーションです。
+モーターのパラメーターの読み書き、バージョンの確認、ファームウェアの更新、モーターデバッグなどの操作が可能で、直感的にドライバーパラメーターを設定できます。
+
+## 免責事項
+
+本製品をご使用になる前に、本文書および達妙科技が提供するすべての安全ガイドラインを注意深くお読みいただき、遵守してください。
+そうしない場合、お客様や周囲の方々への危害、デバッグ対象の製品やその他の周囲の物品の損傷を引き起こす可能性があります。
+本製品を使用することにより、お客様は本文書を精読し、本文書および本製品に関連するすべての文書の条項と内容を理解、承認、承諾したものとみなされます。
+お客様は本製品を正当な目的でのみ使用することを約束します。
+お客様は本製品の使用およびそれにより生じる可能性のある結果について全責任を負うことを約束します。
+達妙科技は、本製品の直接的または間接的な使用によって生じた損害、傷害、およびいかなる法的責任についても責任を負いません。
+
+DAMIAOは深セン市達妙科技有限公司の商標です。
+本文中に登場する製品名、ブランド名は、各社の商標です。
+本製品及びマニュアルの著作権は深セン市達妙科技有限公司に帰属します。
+許可なく複製・転載することは一切禁じられています。
+本文書及び本製品に関連する全ての文書の最終的な解釈権は深セン市達妙科技有限公司に帰属します。
+更新がある場合、別途通知はいたしません。
+
+## 注意事項
+
+1. 使用前に取扱説明書をよくお読みください。
+2. モーターパラメーターは必ずモーターマニュアルに従って設定してください。
+3. モーターのファームウェアは公式ルート（公式サイト、フォーラム、公式グループチャット）から入手可能です。
+4. デバッグ中にモーターの異常回転などの現象が発生した場合は、直ちに電源を切り、専門家に連絡してください。
+5. モーターにファームウェアが書き込まれていない、初期化されていない場合は、推奨される次の手順を試してください。
+   1. シリアルポートを開く
+   2. バージョンを読み取る
+   3. ファームウェアを選択
+   4. ファームウェアアップグレード
+   5. モーター側エンコーダキャリブレーション
+   6. パラメーターキャリブレーション
+   7. 出力軸エンコーダキャリブレーション
+   8. デバッグ
+6. CANデバッグに関連する機能にはUSB2CANモジュールが必要です。
+
+## 画面一覧
+
+### メイン画面
+
+<BlockImage src="products/dm-debugging-tool/image1.jpg" />
+
+#### 1. 機能タブバー
+
+<InlineImage src="products/dm-debugging-tool/image2.jpg" />
+
+* 串口（シリアルポート）
+  * シリアルモードコンソール送受信画面
+* 参数设置（パラメーター設定）
+  * モーターパラメーター設定画面
+* 校准（校正）
+  * モーター校正波形表示画面
+* 调试（デバッグ）
+  * モーターデバッグ画面
+* 解析（解析）
+  * モーターフィードバックデータ解析画面
+* 关于（このソフトウェアについて）
+  * バージョン更新情報、連絡先
+
+#### 2. 串口设置（シリアルポート設定）
+
+<InlineImage src="products/dm-debugging-tool/image3.jpg" />: 利用可能なシリアルポートを更新
+
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />: 利用可能なシリアルポートを開く
+
+#### 3. 串口接收设置（シリアルポート受信設定）
+
+<InlineImage src="products/dm-debugging-tool/image5.jpg" />: シリアルポートデータの表示状態を切り替え、受信中/受信停止を表示
+
+<InlineImage src="products/dm-debugging-tool/image6.jpg" />: シリアルポートデータ表示形式の切り替え、ASCII / HEX
+
+#### 4. 通讯模式切换（通信モード切替）
+
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />: 現在の通信モードの切り替え、UART / CAN
+
+#### 5. 固件升级（ファームウェアのアップグレード）
+
+<InlineImage src="products/dm-debugging-tool/image8.jpg" />: バージョン情報読み取りボタン
+
+<InlineImage src="products/dm-debugging-tool/image9.jpg" />: バージョン情報表示
+
+<InlineImage src="products/dm-debugging-tool/image10.jpg" />: ファームウェア選択ボタン
+
+<InlineImage src="products/dm-debugging-tool/image11.jpg" />: ファームウェア更新ボタン
+
+<InlineImage src="products/dm-debugging-tool/image12.jpg" />: ファームウェア名表示
+
+#### 6. 电机校准（モーターの校正）
+
+<InlineImage src="products/dm-debugging-tool/image13.jpg" />: キャリブレーションエンコーダオブジェクトの切り替え、
+モーター側エンコーダー ／ 出力軸エンコーダー
+
+<InlineImage src="products/dm-debugging-tool/image14.jpg" />: 選択したエンコーダのキャリブレーションボタン
+
+#### 7. 电机参数预设（モーターパラメータープリセット）
+
+<InlineImage src="products/dm-debugging-tool/image15.jpg" />: パラメーターエクスポートボタン
+
+<InlineImage src="products/dm-debugging-tool/image16.jpg" />: パラメーターインポートボタン
+
+#### 8. 版本号查看（バージョン番号の確認）
+
+<InlineImage src="products/dm-debugging-tool/image17.jpg" />: デバッグツールのバージョン情報
+
+#### 9. 中英文切换（中国語と英語の切り替え）
+
+<InlineImage src="products/dm-debugging-tool/image18.jpg" />: ソフトウェア言語の切り替え、CN / EN（中国語 / 英語）
+
+#### 10. 状态栏（ステータスバー）
+
+<InlineImage src="products/dm-debugging-tool/image19.jpg" />
+
+### 串口（シリアル）画面
+
+<BlockImage src="products/dm-debugging-tool/image20.jpg" />
+
+#### 1. 串口界面串口打印信息（シリアルポートインターフェースのシリアルポート出力情報）
+
+シリアルポート受信データの表示
+
+#### 2. 发送文本 ASCII / HEX 切换（テキスト送信 ASCII / HEX 切り替え）
+
+<InlineImage src="products/dm-debugging-tool/image21.jpg" />: 送信入力ボックスのテキストを切り替え、表示値は現在の送信形式を示す
+
+#### 3. 串口文本发送（シリアルポートテキスト送信）
+
+<InlineImage src="products/dm-debugging-tool/image22.jpg" />: シリアルポート入力ボックステキスト送信ボタン
+
+#### 4. 发送文本输入框（テキスト入力ボックスを送信）
+
+### 参数设置（パラメーター設定）画面
+
+<BlockImage src="products/dm-debugging-tool/image23.jpg" />
+
+#### 1. 参数标定（パラメーターのキャリブレーション）
+
+<InlineImage src="products/dm-debugging-tool/image24.jpg" />: モーターパラメーター設定ボタン
+
+#### 2. 驱动参数（駆動パラメーター）
+
+モータードライバー設定パラメーター
+
+#### 3. 读参数（パラメーターを読み取る）
+
+<InlineImage src="products/dm-debugging-tool/image25.jpg" />: モーターパラメーター読み取りボタン
+
+#### 4. 写参数（パラメーターを書き込む）
+
+<InlineImage src="products/dm-debugging-tool/image26.jpg" />: モーターパラメーター書き込みボタン
+
+#### 5. 控制框图（制御ブロック図）
+
+現在の制御モードの機能ブロック図およびCANコマンドフォーマットに対応
+
+#### 6. 控制幅值参数（振幅制御パラメーター）
+
+<InlineImage src="products/dm-debugging-tool/image27.jpg" />
+
+#### 7. 控制器参数读取（コントローラーパラメーター読み取り）
+
+#### 8.控制参数设置（制御パラメーター設定）
+
+<InlineImage src="products/dm-debugging-tool/image28.jpg" />
+
+<InlineImage src="products/dm-debugging-tool/image29.jpg" />: 現在のコントローラパラメーターを読み取る
+
+<InlineImage src="products/dm-debugging-tool/image30.jpg" />: 現在のコントローラパラメーターを一時保存する
+
+<InlineImage src="products/dm-debugging-tool/image31.jpg" />
+
+#### 9. 控制模式选择（制御モード選択）
+
+#### 10. 控制器参数暂存（コントローラパラメーターの一時保存）
+
+#### 11. 参数范围提示（パラメーター範囲ヒント）
+
+<InlineImage src="products/dm-debugging-tool/image32.jpg" />: パラメーター範囲ヒントボタン
+
+### 校准（キャリブレーション）画面
+
+<BlockImage src="products/dm-debugging-tool/image33.jpg" />
+
+#### 1. 校准波形展示（波形の校正表示）
+
+#### 2. 波形图注（波形図の補足説明）
+
+<InlineImage src="products/dm-debugging-tool/image34.jpg" />: 色と意味
+
+#### 3. 校准进度条（プログレスバーのキャリブレーション）
+
+<InlineImage src="products/dm-debugging-tool/image35.jpg" />
+
+### 调试（デバッグ）画面
+
+<BlockImage src="products/dm-debugging-tool/image36.jpg" />
+
+#### 1. 调试波形展示（デバッグ波形表示）
+
+#### 2. 波形瞬时数据值（波形瞬時データ値）
+
+<InlineImage src="products/dm-debugging-tool/image37.jpg" />: 波形の瞬時値表示
+
+#### 3. CAN ID 读写（CAN ID 読み書き）
+
+<InlineImage src="products/dm-debugging-tool/image38.jpg" />: CAN ID 表示、ID 形式は16進データ
+
+<InlineImage src="products/dm-debugging-tool/image39.jpg" />: ID読み取り
+
+<InlineImage src="products/dm-debugging-tool/image40.jpg" />: ID設定
+
+#### 4. 电机模式（モーターモード）
+
+<InlineImage src="products/dm-debugging-tool/image41.jpg" />: モーター有効化
+
+<InlineImage src="products/dm-debugging-tool/image42.jpg" />: モーターの現在位置をゼロ点に設定
+
+<InlineImage src="products/dm-debugging-tool/image43.jpg" />: モーター無効化
+
+#### 5. CAN 波特率设置（CAN ボーレート設定）
+
+<InlineImage src="products/dm-debugging-tool/image44.jpg" />: <span style={{color: 'red'}}>USB-CANデバッガー</span> CANボーレート選択
+
+<InlineImage src="products/dm-debugging-tool/image45.jpg" />: 現在のボーレート設定を有効化
+
+<InlineImage src="products/dm-debugging-tool/image46.jpg" />: 速度単位の切り替え、 `rad/s` か `rpm`
+
+#### 6. 控制模式选择标签（制御モード選択タブ）
+
+<InlineImage src="products/dm-debugging-tool/image47.jpg" />
+
+#### 7. 目标参数设置（目標パラメーター設定）
+
+<InlineImage src="products/dm-debugging-tool/image48.jpg" />: スライダーで設定するパラメーター値。MIN-MAXの下の数字が境界値。
+
+#### 8. CAN 数据帧发送反馈区域（CANデータフレーム送信フィードバック領域）
+
+<InlineImage src="products/dm-debugging-tool/image49.jpg" />: CANデータフレーム送信表示
+
+<InlineImage src="products/dm-debugging-tool/image50.jpg" />: CANフィードバックデータフレーム受信によるモーターの状態表示
+
+<InlineImage src="products/dm-debugging-tool/image51.jpg" />: CANデータフレームの定期送信チェックボックス
+
+<InlineImage src="products/dm-debugging-tool/image52.jpg" />: CANデータフレーム送信間隔（単位：ms）
+
+<InlineImage src="products/dm-debugging-tool/image53.jpg" />: 制御パラメーターの更新後に、連続送信データを即時更新
+
+<InlineImage src="products/dm-debugging-tool/image54.jpg" />: モーターのエラー状態をクリア
+
+<InlineImage src="products/dm-debugging-tool/image55.jpg" />: 現在の制御モード設定パラメーターに基づくCANデータフレームを送信
+
+<InlineImage src="products/dm-debugging-tool/image56.jpg" />: 送信ボタンが緑色になり「停止」の表示時は「連続送信状態」
+
+## 機器を接続する
+
+### 通信設定
+
+<BlockImage src="products/dm-debugging-tool/image57.jpg" />
+
+<br />
+
+<u>Tips: 汎用シリアルポートデバイスはすべて使用できます。USB2CANに限定されません。</u>
+
+#### 1. 刷新串口（シリアルポートのリフレッシュ）（手順①）
+
+新しいデバイスが接続された場合「刷新串口（シリアルポートを更新）」ボタン（図示①）をクリックすると、現在利用可能なシリアルポートをスキャンして表示します。
+
+#### 2. 设置通讯配置（通信設定）（手順②）
+
+「通讯设定（通信設定）」エリアでは、実際の状況に応じてシリアルポート番号を選択するほか、ボーレート、データビット、チェックビット、ストップビットはデフォルト設定のままにします。
+
+#### 3. 打开串口（シリアルポートを開く）（手順③）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+## シリアル通信
+
+この通信モードでは、バージョン読み取り、ファームウェア更新、パラメーターの読み書き、パラメーターのインポート/エクスポート、パラメーターのキャリブレーション、およびモーター側/出力軸のキャリブレーション機能を利用できます。
+
+#### 機能特性
+
+* UARTプロトコルをサポート、ボーレート範囲：1200～460800bps（デフォルト921600bps）
+* ASCII / HEX形式のデータ送受信をサポート、カスタムフレームヘッダー / フレームテールのサポート
+* 受信 / 送信データ量の統計をリアルタイム表示（受信: 0バイト、 送信: 0バイト）
+
+<BlockImage src="products/dm-debugging-tool/image59.jpg" />
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 UART 通讯（UART通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image7.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 点击读版本（クリックしてバージョンを読む）（手順③）
+
+<InlineImage src="products/dm-debugging-tool/image8.jpg" /> ボタンをクリック（図示③）
+
+#### 4. 查看固件和 bootloader 版本（ファームウェアとブートローダーのバージョンを確認する）（手順④）
+
+<InlineImage src="products/dm-debugging-tool/image61.jpg" />
+
+Firmware はファームウェアアプリプログラム、Bootloader はブートローダーです。
+
+### ファームウェアのアップグレード
+
+<BlockImage src="products/dm-debugging-tool/image62.jpg" />
+
+#### 注意事項
+
+1. アップグレード中は電源を切ったり接続を切断したりしないでください。
+2. ファームウェアのバージョンはモーターモデルと一致させる必要があります（モーターラベルを参照）。
+3. アップグレードに失敗した場合は、エラークリア機能を使用した後、再試行してください。
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 UART 通讯（UART通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image7.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 选择要升级的固件（アップグレードするファームウェアを選択する）（手順③）
+
+<InlineImage src="products/dm-debugging-tool/image10.jpg" />ボタン（図示③）をクリックし、
+アップグレードが必要なファームウェアバージョンを選択してください。
+
+#### 4. 查看固件名称是否正确（ファームウェア名が正しいか確認する）（手順④）
+
+<InlineImage src="products/dm-debugging-tool/image63.jpg" />
+
+4310モーターのファームウェアアプリバージョンが5.0.1.7であることを示しています。
+
+#### 5. 开始固件升级（ファームウェアのアップグレードを開始する）（手順⑤）
+
+<InlineImage src="products/dm-debugging-tool/image11.jpg" />ボタン（図示⑤）をクリックし、
+ファームウェアのアップグレード操作を開始します。
+
+<InlineImage src="products/dm-debugging-tool/image64.jpg" />
+
+アップグレードの進捗状況を確認します。
+
+### パラメーターを読み取る
+
+<BlockImage src="products/dm-debugging-tool/image65.jpg" />
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 UART 通讯（UART通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image7.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 切换到调试标签页（デバッグタブに切り替える）（手順③）
+
+画面上部の「参数设置（パラメーター設定）」タブ（図示③）をクリックし、パラメーター設定画面に切り替えます。
+
+#### 4. 读参数（パラメーターを読み取る）（手順④）
+
+<InlineImage src="products/dm-debugging-tool/image66.jpg" />ボタン（図示④）をクリックし、モーター関連パラメーターを読み取ります。
+
+### パラメーターを書き込む
+
+<BlockImage src="products/dm-debugging-tool/image67.jpg" />
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 UART 通讯（UART通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image7.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 切换到调试标签页（デバッグタブに切り替える）（手順③）
+
+画面上部の「参数设置（パラメーター設定）」タブ（図示③）をクリックし、パラメーター設定画面に切り替えます。
+
+#### 4. 修改参数（パラメーターの変更）（手順④）
+
+<InlineImage src="products/dm-debugging-tool/image66.jpg" />ボタンをクリックして読み取った現在のパラメーターか、
+<InlineImage src="products/dm-debugging-tool/image16.jpg" />ボタンをクリックしてインポートしたパラメーターを編集できます。
+
+<u>
+  Tips: モーターパラメーターは変更不可です。
+  極対数を変更することは推奨しません（キャリブレーション後に自動的に認識されます）。
+  減速比の変更は慎重に行ってください。
+</u>
+
+#### 5. 写入参数（パラメーターの書き込み）（手順⑤）
+
+パラメーターを変更後、
+<InlineImage src="products/dm-debugging-tool/image68.jpg" />ボタン（図示⑤）をクリックして、パラメーターをデバイスに書き込みます。
+
+パラメーターの書き込みに成功すると、最新バージョンのファームウェアは自動的にソフトウェア再起動を行い、現在のパラメーターを有効にします。
+この時、下部のシリアルポートの受信数が増加していることを確認することで、再起動が完了したことがわかります。
+
+<u>
+  パラメーターの入力には空白を含めないでください。
+  推奨される方法として、まずパラメーターを読み取るか、パラメーターのインポート機能を使用して現在のパラメーターを取得し、必要に応じて修正してください。
+  詳細は対応する章を参照してください。
+</u>
+
+### パラメーターのインポートとエクスポート
+
+<BlockImage src="products/dm-debugging-tool/image69.jpg" />
+
+#### 1. 读参数（パラメーターを読み取る）（手順①）
+
+<InlineImage src="products/dm-debugging-tool/image66.jpg" />ボタン（図示①）をクリックし、モーター関連パラメーターを読み取ります。
+
+#### 2. 修改参数（パラメーターを変更する）（手順②）
+
+対応するパラメーターボックス（制御振幅、速度KPなど）で、必要に応じてパラメーター値を変更してください。
+
+#### 3. 导出参数（パラメーターのエクスポート）（手順③）
+
+<InlineImage src="products/dm-debugging-tool/image70.jpg" />ボタン（図示③）をクリックすると、現在の設定パラメーターをエクスポートして保存します。
+
+#### 4. 清空数据（データの消去）（手順④）
+
+<InlineImage src="products/dm-debugging-tool/image71.jpg" />ボタン（図示④）をクリックして、関連するデータを消去します。
+
+#### 5. 导入参数（パラメーターのインポート）（手順⑤）
+
+<InlineImage src="products/dm-debugging-tool/image16.jpg" />ボタン（図示⑤）をクリックし、保存済みのパラメーターファイルをインポートします。
+
+インポート（エクスポート）パラメーターはテキスト形式です。
+フォーマットは`name:value`です。
+パラメーターインポート時に`value`が空のデータはスキップされます。
+
+テキストファイルで修正してからインポートすることもできます。
+<span style={{color: 'red'}}>パラメーターをインポートした後は、パラメーターを書き込む必要があります。</span>
+
+テキストファイルの例:
+<InlineImage src="products/dm-debugging-tool/image72.jpg" />
+
+#### 6. 写入参数（パラメーターの書き込み）（手順⑥）
+
+<InlineImage src="products/dm-debugging-tool/image68.jpg" />ボタンをクリックすると、変更後のパラメーターがデバイスに書き込まれます。
+
+### パラメーターのキャリブレーション
+
+<BlockImage src="products/dm-debugging-tool/image73.jpg" />
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 进行参数标定（パラメーターのキャリブレーションを実施）（手順②）
+
+「电机参数（モーターパラメーター）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image24.jpg" />ボタン（図示②）をクリックします。
+
+#### 3. 查看参数标定结果（パラメーターキャリブレーション結果の確認）（手順③）
+
+<InlineImage src="products/dm-debugging-tool/image74.jpg" />
+
+### モーター側のキャリブレーション
+
+<BlockImage src="products/dm-debugging-tool/image75.jpg" />
+
+注：キャリブレーションボタンをクリックすると、自動的にキャリブレーションタブに切り替わります。
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为电机侧编码（モーター側のエンコーダーに切り替える）（手順②）
+
+「校准（キャリブレーション）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image76.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image13.jpg" />キャリブレーションモードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image13.jpg" />キャリブレーションモードの場合は切り替え不要です。
+
+#### 3. 开始校准（キャリブレーションを開始）（手順③）
+
+<InlineImage src="products/dm-debugging-tool/image14.jpg" />ボタン（図示③）をクリックし、キャリブレーションプログラムを起動します。
+
+#### 4. 观察校准波形（キャリブレーション波形を確認）（手順④）
+
+キャリブレーションプロセス中、右側の波形エリアに表示されるキャリブレーション波形（図示④）を確認し、キャリブレーション状態を判断します。
+
+キャリブレーション完了後、詳細ウィンドウが表示されます。
+手動で保存ボタンをクリックし、保存に成功すると「传输成功（転送成功）」と表示されます。
+
+<InlineImage src="products/dm-debugging-tool/image77.jpg" />
+
+### 出力軸のキャリブレーション
+
+<BlockImage src="products/dm-debugging-tool/image78.jpg" />
+
+注：キャリブレーションボタンをクリックすると、自動的にキャリブレーションタブに切り替わります。
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为电机侧编码（モーター側のエンコーダーに切り替える）（手順②）
+
+「校准（キャリブレーション）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image13.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image76.jpg" />キャリブレーションモードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image76.jpg" />キャリブレーションモードの場合は切り替え不要です。
+
+#### 3. 开始校准（キャリブレーションを開始）（手順③）
+
+<InlineImage src="products/dm-debugging-tool/image14.jpg" />ボタン（図示③）をクリックし、キャリブレーションプログラムを起動します。
+
+#### 4. 观察校准波形（キャリブレーション波形を確認）（手順④）
+
+キャリブレーションプロセス中、右側の波形エリアに表示されるキャリブレーション波形（図示④）を確認し、キャリブレーション状態を判断します。
+
+<InlineImage src="products/dm-debugging-tool/image79.jpg" />
+
+## CAN通信
+
+この通信モードでは、バージョン読み取り、ファームウェア更新、パラメーターの読み書き、パラメーターのインポート/エクスポート、およびモーターのデバッグが可能です。
+<u>現在、DAMIAO USB-CAN デバッガーでの操作のみをサポートしています。</u>
+
+#### 機能特性
+
+* CAN 2.0プロトコルをサポートし、ボーレートは100/125/250/500/1000kbpsから選択できます。
+* 標準フレーム（11ビットID）と拡張フレーム（29ビットID）をサポート
+* 自動認識デバイスノード、複数デバイスネットワーク対応（マスター/スレーブモード）
+
+### バージョンを読み取る
+
+<BlockImage src="products/dm-debugging-tool/image80.jpg" />
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 CAN 通讯（CAN通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 输入 CAN ID（CAN IDを入力）（手順③）
+
+「CAN ID」入力欄<InlineImage src="products/dm-debugging-tool/image81.jpg" />（図示③）にターゲットデバイスのCAN ID（例：`0x00`）を入力すると、自動的にIDを認識し、選択したIDが存在するかどうかを判定します。
+
+#### 4. 点击读版本（バージョンを読む）（手順④）
+
+<InlineImage src="products/dm-debugging-tool/image8.jpg" />ボタン（図示④）をクリックします。
+
+#### 5. 查看固件和 bootloader 版本（ファームウェアとブートローダーのバージョンを確認する）（手順⑤）
+
+<InlineImage src="products/dm-debugging-tool/image61.jpg" />
+
+Firmware はファームウェアアプリプログラム、Bootloader はブートローダーです。
+
+### ファームウェアのアップグレード
+
+<BlockImage src="products/dm-debugging-tool/image82.jpg" />
+
+#### 注意事項
+
+1. アップグレード中は電源を切ったり接続を切断したりしないでください。
+2. ファームウェアのバージョンはモーターモデルと一致させる必要があります（モーターラベルを参照）。
+3. アップグレードに失敗した場合は、エラークリア機能を使用した後、再試行してください。
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 CAN 通讯（CAN通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 输入 CAN ID（CAN IDを入力）（手順③）
+
+「CAN ID」入力欄<InlineImage src="products/dm-debugging-tool/image81.jpg" />（図示③）にターゲットデバイスのCAN ID（例：`0x00`）を入力すると、自動的にIDを認識し、選択したIDが存在するかどうかを判定します。
+
+#### 4. 选择要升级的固件（アップグレードするファームウェアを選択）（手順④）
+
+<InlineImage src="products/dm-debugging-tool/image10.jpg" />ボタン（図示④）をクリックし、
+アップグレードが必要なファームウェアバージョンを選択してください。
+
+#### 5. 查看固件名称是否正确（ファームウェア名が正しいか確認する）（手順⑤）
+
+<InlineImage src="products/dm-debugging-tool/image63.jpg" />
+
+4310モーターのファームウェアアプリバージョンが5.0.1.7であることを示しています。
+
+#### 6. 开始固件升级（ファームウェアのアップグレードを開始する）（手順⑥）
+
+<InlineImage src="products/dm-debugging-tool/image11.jpg" />ボタン（図示⑥）をクリックし、
+ファームウェアのアップグレード操作を開始します。
+
+<InlineImage src="products/dm-debugging-tool/image64.jpg" />
+
+アップグレードの進捗状況を確認します。
+
+### パラメーターを読み取る
+
+<BlockImage src="products/dm-debugging-tool/image83.jpg" />
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 CAN 通讯（CAN通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 输入 CAN ID（CAN IDを入力）（手順③）
+
+「CAN ID」入力欄<InlineImage src="products/dm-debugging-tool/image81.jpg" />（図示③）にターゲットデバイスのCAN ID（例：`0x00`）を入力すると、自動的にIDを認識し、選択したIDが存在するかどうかを判定します。
+
+#### 4. 切换到调试标签页（デバッグタブに切り替える）（手順④）
+
+画面上部の「参数设置（パラメーター設定）」タブ（図示④）をクリックし、パラメーター設定画面に切り替えます。
+
+#### 5. 读参数（パラメーターを読み取る）（手順⑤）
+
+<InlineImage src="products/dm-debugging-tool/image66.jpg" />ボタン（図示⑤）をクリックし、モーター関連パラメーターを読み取ります。
+
+### パラメーターを書き込む
+
+<BlockImage src="products/dm-debugging-tool/image84.jpg" />
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 CAN 通讯（CAN通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 输入 CAN ID（CAN IDを入力）（手順③）
+
+「CAN ID」入力欄<InlineImage src="products/dm-debugging-tool/image81.jpg" />（図示③）にターゲットデバイスのCAN ID（例：`0x00`）を入力すると、自動的にIDを認識し、選択したIDが存在するかどうかを判定します。
+
+#### 4. 切换到调试标签页（デバッグタブに切り替える）（手順④）
+
+画面上部の「参数设置（パラメーター設定）」タブ（図示④）をクリックし、パラメーター設定画面に切り替えます。
+
+#### 5. 修改参数（パラメーターの変更）（手順⑤）
+
+<InlineImage src="products/dm-debugging-tool/image66.jpg" />ボタンをクリックして読み取った現在のパラメーターか、
+<InlineImage src="products/dm-debugging-tool/image16.jpg" />ボタンをクリックしてインポートしたパラメーターを編集できます。
+
+<u>
+  Tips: モーターパラメーターは変更不可です。
+  極対数を変更することは推奨しません（キャリブレーション後に自動的に認識されます）。
+  減速比の変更は慎重に行ってください。
+</u>
+
+#### 6. 写入参数（パラメーターの書き込み）（手順⑥）
+
+パラメーターを変更後、
+<InlineImage src="products/dm-debugging-tool/image68.jpg" />ボタン（図示⑥）をクリックして、パラメーターをデバイスに書き込みます。
+
+パラメーターの書き込みに成功すると、最新バージョンのファームウェアは自動的にソフトウェア再起動を行い、現在のパラメーターを有効にします。
+この時、下部のシリアルポートの受信数が増加していることを確認することで、再起動が完了したことがわかります。
+
+<u>
+  パラメーターの入力には空白を含めないでください。
+  推奨される方法として、まずパラメーターを読み取るか、パラメーターのインポート機能を使用して現在のパラメーターを取得し、必要に応じて修正してください。
+  詳細は対応する章を参照してください。
+</u>
+
+### パラメーターのインポートとエクスポート
+
+<BlockImage src="products/dm-debugging-tool/image69.jpg" />
+
+#### 1. 读参数（パラメーターを読み取る）（手順①）
+
+<InlineImage src="products/dm-debugging-tool/image66.jpg" />ボタン（図示①）をクリックし、モーター関連パラメーターを読み取ります。
+
+#### 2. 修改参数（パラメーターを変更する）（手順②）
+
+対応するパラメーターボックス（制御振幅、速度KPなど）で、必要に応じてパラメーター値を変更してください。
+
+#### 3. 导出参数（パラメーターのエクスポート）（手順③）
+
+<InlineImage src="products/dm-debugging-tool/image70.jpg" />ボタン（図示③）をクリックすると、現在の設定パラメーターをエクスポートして保存します。
+
+#### 4. 清空数据（データの消去）（手順④）
+
+<InlineImage src="products/dm-debugging-tool/image71.jpg" />ボタン（図示④）をクリックして、関連するデータを消去します。
+
+#### 5. 导入参数（パラメーターのインポート）（手順⑤）
+
+<InlineImage src="products/dm-debugging-tool/image16.jpg" />ボタン（図示⑤）をクリックし、保存済みのパラメーターファイルをインポートします。
+
+インポート（エクスポート）パラメーターはテキスト形式です。
+フォーマットは`name:value`です。
+パラメーターインポート時に`value`が空のデータはスキップされます。
+
+テキストファイルで修正してからインポートすることもできます。
+<span style={{color: 'red'}}>パラメーターをインポートした後は、パラメーターを書き込む必要があります。</span>
+
+テキストファイルの例:
+<InlineImage src="products/dm-debugging-tool/image72.jpg" />
+
+#### 6. 写入参数（パラメーターの書き込み）（手順⑥）
+
+<InlineImage src="products/dm-debugging-tool/image68.jpg" />ボタンをクリックすると、変更後のパラメーターがデバイスに書き込まれます。
+
+### モーターの調整
+
+<BlockImage src="products/dm-debugging-tool/image85.jpg" />
+
+<br />
+
+<b>Tips</b>
+* （単一デバイスの場合）CAN ID設定は右側のCAN IDエリアの読み取りを通じて行うこともできます。
+* （複数デバイスの場合）CAN IDを指定する必要があるときは、必ず手動でCAN IDを入力してください。
+
+<InlineImage src="products/dm-debugging-tool/image86.jpg" />
+
+#### 1. 打开串口（シリアルポートを開く）（手順①）
+
+「通讯设定（通信設定）」エリアでシリアルポート番号、ボーレート（例：921600）、データビット（8）、チェックビット（None）、ストップビット（One）の設定をしたあと、
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />ボタン（図示①）をクリックすると、ボタンが
+<InlineImage src="products/dm-debugging-tool/image58.jpg" />に変化し、設定が正常に有効化されたことを確認できます。
+
+#### 2. 切换为 CAN 通讯（CAN通信に切り替える）（手順②）
+
+「USB 模式（USBモード）」エリアで、
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />ボタン（図示②）をクリックし、
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードに切り替えます。
+既に<InlineImage src="products/dm-debugging-tool/image60.jpg" />通信モードの場合は切り替えません。
+
+#### 3. 输入 CAN ID（CAN IDを入力）（手順③）
+
+「CAN ID」入力欄<InlineImage src="products/dm-debugging-tool/image81.jpg" />（図示③）にターゲットデバイスのCAN ID（例：`0x00`）を入力すると、自動的にIDを認識し、選択したIDが存在するかどうかを判定します。
+
+#### 4. 切换到调试标签页（デバッグタブに切り替える）（手順④）
+
+画面上部の「调试（デバッグ）」タブ
+<InlineImage src="products/dm-debugging-tool/image87.jpg" />（図示④）をクリックし、デバッグ画面に切り替えます。
+
+#### 5. 电机使能（モーターの有効化）（手順⑤）
+
+デバッグページの右側にある「电机模式（モーターモード）」エリアを見つけ、
+<InlineImage src="products/dm-debugging-tool/image41.jpg" />ボタン（図示⑤）をクリックします。
+
+#### 6. 选择控制模式（制御モードの選択）（手順⑥）
+
+「控制参数（制御パラメーター）」エリアでは、モーターの実際の使用状況に応じて、「位置」「速度」「PVT」などの制御モードを選択します<InlineImage src="products/dm-debugging-tool/image88.jpg" />（図示⑥）。
+ここで選択したモードがモーターのパラメーター設定と一致していることを確認し、異常な操作を回避してください。
+
+#### 7. 进行参数设置（パラメーターの設定）（手順⑦）
+
+制御モードを選択後、必要に応じて対応するパラメーターボックス（位置、速度、力矩（トルク）など）に数値を入力するか、「KP」「KI」「KD」などの制御パラメーターを調整し（図示⑦）、モーター運転パラメーターの詳細設定を完了させます。
+
+次の例のように、位置モードでは位置パラメーターを8rad、速度パラメーターを 10rad/s に設定します。
+
+<InlineImage src="products/dm-debugging-tool/image89.jpg" />
+
+#### 8. 发送数据（データ送信）（手順⑧）
+
+パラメーター設定の完了後、
+<InlineImage src="products/dm-debugging-tool/image22.jpg" />ボタン（図示⑧）をクリックすると、データがCANバス経由で対象モーターに送信され、設定パラメーターに従ってモーターが駆動します。
+繰り返し送信が必要な場合は、
+<InlineImage src="products/dm-debugging-tool/image51.jpg" />にチェックを入れ間隔時間（例：1ms）を設定することで、継続的な制御ができます。
+
+例: モーターが10rad/sの速度で8radの位置まで移動したことが確認できます。
+
+<InlineImage src="products/dm-debugging-tool/image90.jpg" />
