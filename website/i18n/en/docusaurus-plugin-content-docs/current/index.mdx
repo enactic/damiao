@@ -1,0 +1,35 @@
+---
+sidebar_position: 1
+---
+
+# DAMIAO Motor
+
+DAMIAO Motor - The ultimate choice for high-precision and high-stability robot joint motors.
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useDocById} from '@docusaurus/plugin-content-docs/client';
+
+export const HardwareList = () => {
+  const hardwareDocIds = [
+    'products/hardware/dm-j4310-2ec-v1.1',
+    'products/hardware/dm-j4340-2ec-v1.0',
+    'products/hardware/dm-j4340p-2ec-v1.0',
+    'products/hardware/dm-j8009p-2ec-v1.0',
+    'products/hardware/dm-usbcu1',
+  ];
+  const items = hardwareDocIds.map((id) => {
+    const doc = useDocById(id);
+    return {
+      type: 'link',
+      label: doc.title,
+      href: doc.id,
+      docId: doc.id,
+      description: doc.description,
+    };
+  })
+  return <DocCardList items={items} />;
+};
+
+<HardwareList />
+```
