@@ -2,26 +2,32 @@
 sidebar_position: 3
 ---
 
-# モーターリサイクル事業について
+# Recycling used motors
 
-Enactic, Inc.は、Damiaoモーターの日本国内代理店として、モーターのリサイクル事業もしています。
+As Damiao motor's dealing company, we are providing used motor's recycling operation.
 
-## 背景
+## Back ground
 
-Damiaoモーターをはじめとする高性能ブラシレスモーターには、ネオジム磁石が使用されています。
-ネオジムは希少な資源であり、採掘から精製までの過程で大きな環境負荷が生じることが知られています。
+High-performance brushless motors including Damiao motors, utilize neodymium magnets.
+Neodymium is a rare resource, and its extraction and refining processes are known to have a significant environmental impact.
 
-モーターを販売する立場として、製品のライフサイクル全体に責任を持つことが重要だと考えています。
+We are thinking It's a great responsibility to provide materials recycling system as motor selling company.
 
-## 取り組み
+## Recycling process
 
-* 使用済みモーターの回収
-* モーターからの磁石取り出し
-* 国内のネオジム磁石リサイクル事業者への引き渡し
+* Collectiong used motors
+* Magnet removal from motors
+* Delivery to neodymium magnet recycling companies
 
-これにより、希少資源の国内循環と環境負荷の低減に貢献することを目指します。
+We pursue the circulation of rare resources and reduce environmental impact.
 
-## 発送先
+## Shipping destination
 
-〒101-0021 東京都千代田区外神田2丁目4-4 第一電波ビル 8F<br />
-（株）Enactic モーターリサイクル係
+〒101-0021
+Dai-ichi dempa building 8th floor<br />
+Soto-Kanda 2-4-4<br />
+Chiyoda-ku Tokyo<br />
+
+Motor recycling group<br />
+Enactic.inc
+
