@@ -53,7 +53,7 @@ Updates will not be notified when occured.
 
 ## Packing list
 
-1. Motor(driver included) x1
+1. Motor(built in driver) x1
 2. Power(with CAN communication terminals) connection cable: XT30(2+2)-F plug connection cable ×1
 3. Serial port signal cable for debugging: GH1.25 connector - 3pin ×1
 
@@ -107,7 +107,7 @@ Refer the motor mounting hole dimensions and locations to install the motor into
 <table>
   <tbody>
     <tr>
-      <td rowspan="2">Normal state</td>
+      <td rowspan="2">Normal states</td>
       <td>Static green</td>
       <td>Enable mode, working normaly</td>
     </tr>
@@ -116,7 +116,7 @@ Refer the motor mounting hole dimensions and locations to install the motor into
       <td>Disable mode</td>
     </tr>
     <tr>
-      <td>abnormal state</td>
+      <td>Abnormal states</td>
       <td>Blink red</td>
       <td>
         <p>This indicates a fault, and the corresponding fault type is as shown:</p>
@@ -215,7 +215,7 @@ Position using 16-bit data and velocity and torque using 12-bit data.
 
 ### Control frame in MIT mode
 
-| COntrol message | D[0] | D[1] | D[2] | D[3] | D[4] | D[5] | D[6] | D[7] |
+| Control message | D[0] | D[1] | D[2] | D[3] | D[4] | D[5] | D[6] | D[7] |
 |--|--|--|--|--|--|--|--|--|
 | ID | p_des[15:8] | p_des[7:0] | v_des[11:4] | v_des[3:0]\|Kp[11:8] | Kp[7:0] | Kd[11:4] | Kd[3:0]\|t_ff[11:8]  | t_ff[7:0] |
 
@@ -316,7 +316,7 @@ Performance curves measured at a constant speed of 120 rpm and a room temperatur
 
 <BlockImage src="products/dm-j4310-2ec-v1.1/image9.jpeg" width="80%" />
 
-以下のパラメータに基づきモーターを適切にご使用ください。
+Please use the motor appropriately according to the following parameters.
 
 <table>
   <tbody>
@@ -330,7 +330,7 @@ Performance curves measured at a constant speed of 120 rpm and a room temperatur
       <td>2.5A</td>
     </tr>
     <tr>
-      <td>Peak currnet</td>
+      <td>Peak current</td>
       <td>7.5A</td>
     </tr>
     <tr>
@@ -379,12 +379,12 @@ Performance curves measured at a constant speed of 120 rpm and a room temperatur
     </tr>
     <tr>
       <td>Weight</td>
-      <td>約300g</td>
+      <td>300g approx</td>
     </tr>
 
     <tr>
       <th rowspan="3">Encoders</th>
-      <td>Encoder7s resolution</td>
+      <td>Encoder's resolution</td>
       <td>14 bit</td>
     </tr>
     <tr>
@@ -393,7 +393,7 @@ Performance curves measured at a constant speed of 120 rpm and a room temperatur
     </tr>
     <tr>
       <td>Encoder type</td>
-      <td>Magnetic (single turn)</td>
+      <td>Magnetic (single lap)</td>
     </tr>
 
     <tr>
@@ -420,29 +420,29 @@ Performance curves measured at a constant speed of 120 rpm and a room temperatur
     <tr>
       <td rowspan="6">Protection</td>
       <td>
-	Driver overheat protection. Threshold temp: 120℃, the motor automaticaly canceles "Enable mode" when the temperature reached.
+	Driver overheat protection: The protection temperature is 120℃. If the temperature exceeds this limit, the motor will exit "Enable mode".
       </td>
     </tr>
     <tr>
       <td>
 	Motor overheat protection. It should be set according to requirements of useage however recommended not to exceed 100℃.
-        The motor automaticaly canceles "Enable mode" when the temperature reached.
+        Over-temperature protection will cause the motor to exit "Enable mode".
       </td>
     </tr>
     <tr>
       <td>
 	Motor overvoltage protection should be set according to usage requirements, but it is recommended not to exceed 32V. 
-	The motor automaticaly canceles "Enable mode" if input voltage reaches the threshod.
+	Overvoltage will exit "Enable mode".
       </td>
     </tr>
     <tr>
       <td>
-	Communication loss protection: If no CAN command is received within a set period, the system will automatically exit "Enabled Mode".	
+	Communication loss protection: If no CAN command is received within a set period, the system will automatically exit "Enable Mode".	
       </td>
     </tr>
     <tr>
       <td>
-	Motor overcurrent protection: It should be set according to usage requirements, but it is recommended not to exceed 9.8A. Overcurrent will exit "enable mode".
+	Motor overcurrent protection: It should be set according to usage requirements, but it is recommended not to exceed 9.8A. Overcurrent will exit "Enable mode".
       </td>
     </tr>
     <tr>
