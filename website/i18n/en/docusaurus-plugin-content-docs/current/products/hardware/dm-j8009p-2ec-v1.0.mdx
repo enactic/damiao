@@ -1,247 +1,246 @@
 ---
-description: DM-J8009P-2EC 減速モーター（クロスローラーベアリング）の日本語のマニュアルです。
+description: DM-J8009P-2EC (cross roller bearing) English user manual
 ---
 
-# DM-J8009P-2EC 減速モーター（クロスローラーベアリング）
+# DM-J8009P-2EC geared motor (cross roller bearing)
 
 ```mdx-code-block
 import BlockImage from '@site/src/components/BlockImage';
 ```
 
-[原文の使用説明書（中国語）](/pdf/products/dm-j8009p-2ec-v1.0-zh.pdf)
+[Original user manual（chinese）](/pdf/products/dm-j8009p-2ec-v1.0-zh.pdf)
 
-本サイト全体のライセンスはApache License 2.0ですが、本資料および原文の資料にはライセンスを設定しません。
+This website is licenced by Apache License 2.0.
+This documentation and original documentation are not linenced.
 
 <BlockImage src="products/dm-j8009p-2ec-v1.0/image1.jpeg" width="50%" />
 
-| 日付 | バージョン | 変更内容 |
+| Date | Version | Changes |
 |--|--|--|
-| 2024.8.26 | V1.0 | 初版作成 |
+| 2024.8.26 | V1.0 | First version created |
 
-## 免責事項
+## Disclaimer
 
-达妙科技 &trade;DAMIAO &trade;DM-J4310-2EC V1.1 減速モーター（以下「本製品」といいます）をご購入いただき、誠にありがとうございます。
-本製品はお客様や周囲の方々への危害、製品本体やその他の周囲の物品の損傷を引き起こす可能性があります。ご使用になる前に、本文書および达妙科技が提供するすべての安全ガイドラインを注意深くお読みいただき、遵守してください。
+Thank you for purchacing &trade;DAMIAO &trade;DM-J4310-2EC V1.1 geared motor(hereinafter referred to as "the motor"). 
+Before using this product, please carefully read and follow this document and all safety guidelines provided by DAMIAO Technology.Failure to do so may cause harm to you and those around you, or damage to this product or other surrounding items.
 
-本製品のご使用にあたり、お客様は本文書を精読し、本文書および製品に関連するすべての文書の条項と内容を理解、承認、承諾したものとし、本製品を正当な目的でのみ使用することを約束したとみなされます。
-またお客様は本製品の使用およびそれにより生じる可能性のある結果について全責任を負うことを約束したとみなされます。
-达妙科技は、本製品の直接的または間接的な使用によって生じた損害、傷害、およびいかなる法的責任についても責任を負いません。
+By using this product, you acknowledge that you have carefully read this document, understand, acknowledge, and accept all the terms and contents of this document and all related documents concerning this product.
 
-DAMIAOは深セン市达妙科技有限公司の商標です。
-本文中に登場する製品名、ブランド名は、各社の商標です。
-本製品及びマニュアルの著作権は深セン市达妙科技有限公司に帰属します。
-許可なく複製・転載することは一切禁じられています。
-本文書及び本製品に関連する全ての文書の最終的な解釈権は深セン市达妙科技有限公司に帰属します。
-更新がある場合、別途通知はいたしません。
+You promise to use this product only for legitimate purposes. You promise to assume full responsibility for the use of this product and any consequences that may arise.
+DAMIAO Technology shall not be liable for any damage, injury, or any legal liability caused directly or indirectly by the use of this product. 
 
-## 注意事項
+DAMIAO is a trademark of Shenzhen DAMIAO Technology Co., Ltd. Product names, brands, etc. Appearing in this document are trademarks of their respective companies. This product and manual are copyrighted by Shenzhen DAMIAO Technology Co. Ltd. Reproduction or reprinting without permission will be prohibited. The final interpretation right of this document and all related documents concerning this product belongs to Shenzhen DAMIAO Technology Co., Ltd. 
 
-1. モーターは規定の作業環境及び巻線許容最高温度範囲内で厳密に使用してください。これに従わない場合、製品に永久的で不可逆的な損傷が生じる可能性があります。
-2. 異物が回転子内部に入るのを避けてください。さもないと回転子の異常動作を引き起こす可能性があります。
-3. 使用前に各部品の健全性を確認してください。部品の欠落、劣化、損傷などが認められた場合は使用を中止してください。
-4. 配線を正しく接続し、モーターが正しく確実に設置されていることを確認してください。
-5. 使用中はローター部分に触れないでください。事故を防止するためです。モーターが高トルク出力時には発熱が生じる場合がありますので、やけどに注意してください。
-6. ユーザーによるモーターの分解は禁止です。分解すると制御精度が低下し、モーターの異常動作を引き起こす可能性があります。
+Updates will not be notified when occured.
 
-## モーターの特徴
+## Warnings
 
-1. デュアルエンコーダ搭載により、出力軸の1回転あたりの絶対位置を検出。電源遮断時でも絶対位置情報を保持します。
-2. モーターとドライバーの一体型設計により、コンパクトで高集積化を実現します。
-3. 上位機による可視化デバッグをサポートし、ファームウェアアップグレードに対応しています。
-4. CANバス経由でモーター速度・位置・トルク・温度等の情報をフィードバックできます。
-5. 二重温度保護機能を搭載しています。
-6. 位置モードでは台形加減速をサポートしています。
+1. Please strictly operate in specified environment and keep the motor under maximum rated temperature.otherwise, permanent and irreversible damage may occur.
+2. Prevent entering foreign objects into the rotor, as this will cause abnormal rotor operation.
+3. Before use, please check that all components are intact. If any parts are missing, aged, or damaged, please stop using the motor.
+4. Ensure correct wiring and the motor is installed correctly and securely.
+5. Do not touch the rotor during use to avoid any accidents. The motor will generate heat when outputting high torque; please take precautions to avoid burns.
+6. Please do not disassemble the motor. This will affect the motor's control accuracy and cause abnormal motor operation.
 
-## 物品リスト
+## Features
 
-1. モーター（ドライバー含む）×1
-2. 電源接続ケーブル：XT30オス-メス電源ケーブル（ケーブル長200mm） × 1
-3. CAN通信端子：GH1.25接続ケーブル-2ピン（ケーブル長300mm） × 1
-4. デバッグ用シリアル信号ケーブル：GH1.25コネクタ-3ピン（ケーブル長300mm） × 1
+1. Dual encoder equipped, single-turn absolute position output provide no loss of absolute position during power outages.
+2. Integrated motor and driver design, compact structure, and high integration.
+3. Visualized debugging and firmware upgrades supported by Damiao debugging tools.
+4. Readable motor speed, position, torque, and temperature information via CAN bus.
+5. Dual temperature protection.
+6. Supports trapezoidal acceleration and deceleration in position mode.
 
-## インターフェース及び配線順序説明
+## Packing list
+
+1. Motor(built in driver) x1
+2. Power connection cable: XT30-M to XT30-F cable (200mm) ×1
+3. CAN communication cable GH1.25 connector - 2pin (300mm) x1
+4. Serial port signal cable for debugging: GH1.25 connector - 3pin(Different side, 300mm) ×1
+
+## Interface and wiring specifications
 
 <table>
   <thead>
     <tr>
-      <th>具体的な名称-番号</th>
-      <th>インターフェース表記</th>
-      <th>説明</th>
+      <th>Connector name-Number</th>
+      <th>Interface mark</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>電源インターフェース-1</td>
+      <td>Power connector-1</td>
       <td><BlockImage src="products/dm-j8009p-2ec-v1.0/image2.jpeg" /></td>
       <td>
         XT30オス-メス電源ケーブルで電源を接続し、定格電圧24V（24-48V対応）でモーターに給電します。
+	Connect the power supply via the XT30-F to XT30-M cable, with a rated voltage  24V (capable with 24-48V) to power the motor.
       </td>
     </tr>
     <tr>
-      <td>CAN通信端子-2</td>
+      <td>CAN communication connector</td>
       <td><BlockImage src="products/dm-j8009p-2ec-v1.0/image3.jpeg" /></td>
       <td>
-        CAN通信端子を介して外部制御機器を接続し、CAN制御コマンドを受信し、モーターの状態情報をフィードバックします。
+	Receive CAN control commands and provide feedback on motor status information.
       </td>
     </tr>
     <tr>
-      <td>デバッグ用シリアルポート-3</td>
+      <td>Debugging serial port-3</td>
       <td><BlockImage src="products/dm-j8009p-2ec-v1.0/image4.jpeg" /></td>
       <td>
-        GH1.25接続ケーブル-3ピンを介し、USB-CANデバッグツール（または汎用USB-シリアル変換モジュール）でPCに接続します。
-        DAMIAOデバッグアシスタントによりモーターのパラメータ設定やファームウェア更新等を行います。
+	Connect to a PC by using the GH1.25 connector cable (-3 pin) and a USB to CAN debugging tool (or a USB to serial module). Use Damiao Technology debugging assistant to set motor parameters and upgrade firmware.
       </td>
     </tr>
   </tbody>
 </table>
 
-## モーター寸法及び取付
+## Motor dimension and installation
 
-モーター取付穴のサイズと位置を参照し、対応する装置にモーターを取り付けてください。
+Refer the motor mounting hole dimensions and locations to install the motor into the corresponding equipment.
 
 <BlockImage src="products/dm-j8009p-2ec-v1.0/image5.jpeg" width="90%" />
 
-## インジケーターランプの状態
+## States of indicator lamp
 
 <table>
   <tbody>
     <tr>
-      <td rowspan="2">正常状態</td>
-      <td>緑色ランプ点灯</td>
-      <td>ERRビットが1の場合、イネーブルモードを示し、正常動作状態です。</td>
+      <td rowspan="2">Normal states</td>
+      <td>Static green</td>
+      <td>ERR bit is 1,Enable mode, working normaly</td>
     </tr>
     <tr>
-      <td>赤ランプ常時点灯</td>
-      <td>ERRビットが0の場合、無効モードです。</td>
+      <td>Static red</td>
+      <td>ERR bit is 0, Disable mode</td>
     </tr>
     <tr>
-      <td>異常状態</td>
-      <td>赤ランプ点滅</td>
+      <td>Abnormal states</td>
+      <td>Blink red</td>
       <td>
-        <p>故障を示す。対応する故障タイプは以下の通りです：</p>
+        <p>This indicates a fault, and the corresponding fault type is as shown:</p>
         <ul>
-          <li>8------過圧；</li>
-          <li>9------低圧；</li>
-          <li>A------過電流；</li>
-          <li>B------MOS過熱；</li>
-          <li>C------モーターコイル過熱；</li>
-          <li>D------通信断；</li>
-          <li>E------過負荷；</li>
+	  <li>8------Over voltage；</li>
+          <li>9------Under voltage；</li>
+          <li>A------Over current；</li>
+          <li>B------MOSFET Over temperature；</li>
+          <li>C------Coil over temperature；</li>
+          <li>D------Communication lost；</li>
+          <li>E------Overloaded；</li>
         </ul>
-        <p>フィードバックフレームまたはDAMIAOデバッグアシスタントインターフェースを通じて、発生した故障の種類を確認できます。</p>
+	<p>You can check the feedback frame and figure out which fault has occured via Damiao Technology debugging assistant interface.</p>
       </td>
     </tr>
   </tbody>
 </table>
 
-## 動作モード
+## Operating modes
 
-### MITモード
+### MIT mode
 
-MITモードはオリジナルMITモードとの互換性を考慮して設計されており、シームレスな切り替えを実現すると同時に、制御範囲（P_MAX、V_MAX、T_MAX）を柔軟に設定可能です。
-ドライバ回路は受信したCANデータを制御変数に変換して演算し、算出したトルク値を電流ループの電流指令値として使用します。
-電流ループはその制御法則に基づき、最終的に所定のトルク電流に到達させます。制御フロー図は以下の通りです：
+The MIT mode is designed for compatible with the original MIT mode, allowing for seamless switching for flexibly setting the control range (P_MAX, V_MAX, T_MAX).
+
+The driver converts the received CAN data into control variables, calculates the torque value, and uses it as the current setpoint for the current loop. The current loop then adjusts according to its regulation rules to ultimately achieve the given torque current. Its control block diagram is as follows:
 
 <BlockImage src="products/dm-j8009p-2ec-v1.0/image6.jpeg" width="80%" />
 
-MITモデルから様々な制御モードを導出できます。
-例えばKp=0、Kd≠0の場合、v_desを指定すれば等速回転を実現できます。
-Kp=0、Kd=0の場合、t_ffを指定すれば所定のトルク出力を実現できます。
+Based on the MIT (Mutual Aspect Ratio) model, various control modes can be derived. For example, when kp=0 and kd is not 0, a given v_des will achieve uniform rotation; when kp=0 and kd=0, a given t_ff will achieve a given torque output.
 
-**注意：位置制御を行う場合、Kdに0を設定してはいけません。そうするとモーターの振動を引き起こし、制御不能に陥る可能性があります。**
+**Note: When controlling the position, kd cannot be set to 0.**
+**Otherwise it will cause the motor vibrate or go out of control.**
 
-### 位置速度モード
+### Position speed mode
 
-カスケード位置制御は三重フィードバック制御モードであり、位置ループが最外周ループとして機能し、その出力が速度ループの指令値となります。
-速度ループの出力は内側電流ループの指令値として用いられ、実際の電流出力を制御する。制御ブロック図は下図の通りです：
+The position cascade mode employs a three-loop series control method. The position loop acts as the outermost loop, and its output serves the reference for the speed loop. The output of the speed loop serves the reference for the inner current loop, controlling the actual current output. The control block diagram is shown below:
 
 <BlockImage src="products/dm-j8009p-2ec-v1.0/image7.jpeg" width="90%" />
 
-p_des は制御目標位置、v_des は動作過程における最大絶対速度値を制限するパラメータです。
+p_des is the target position to be controlled, and v_des is the maximum absolute velocity value during the motion process.
 
-カスケード制御モードは、デバッグアシスタントが推奨する制御パラメータを使用することで、良好な制御精度と比較的滑らかな制御プロセスを実現できますが、応答時間は比較的長くなります。設定可能な関連パラメータは v_des のほか、加減速度の設定があります。
-制御プロセス中に余分な振動が発生した場合は、加減速度を上げることで改善できます。
+Using the control parameters recommended by the debugging assistant during the position cascade mode, it can achieve good control accuracy and a relatively smooth control, but the response time is relatively long. 
+In addition to v_des, configurable parameters include acceleration/deceleration settings; 
+These parameters can compensate unexpected oscillations during control.
 
-**注意：p_des、v_desの単位はそれぞれrad 、rad/sであり、データ型はfloatです。**
-**ダンピング係数は必ず0以外の正の数に設定してください。速度モードの注意事項を参照してください。**
+**Note: p_des and v_des are in units of rad and rad/s respectively, and type float. **
+**The damping factor must be set to non-zero positive value. Please refer to the notes for speed mode. **
 
-### 速度モード
+### Speed mode
 
-速度モードはモーターを設定速度で連続運転させることができ、その制御ブロック図は以下の通りです：
+The speed mode allows the motor to turn continuously setting target speed. The control block diagram is shown below:
 
 <BlockImage src="products/dm-j8009p-2ec-v1.0/image8.jpeg" width="70%" />
 
-**注意：v_desの単位はrad/s、データ型はfloatです。**
-**デバッグアシスタントによる自動パラメータ計算を利用する場合、減衰係数を0以外の正の数（通常2.0～10.0の範囲）に設定する必要があります。**
-**減衰係数が小さすぎると速度の振動や大きなオーバーシュートが発生し、大きすぎると立ち上がり時間が長くなります。推奨設定値は4.0です。**
+**Note: The unit of v_des is rad/s, and type of the data is float.**
+**If you need to use the debugging assistant to automatically calculate parameters, you need to set the damping factor to a non-zero positive value. Typically, the value is between 2.0 and 10.0. **
+**Too small damping factor will cause oscillation and large overshoot, while too large damping factor will cause a long rise time. The recommended setting is 4.0. **
 
-## 使用
+## Use
 
-制御にはCAN標準フレームフォーマットを使用し、固定ボーレートは1Mbpsです。
-機能別に受信フレームとフィードバックフレームに分類され、受信フレームは受信した制御データでモーターのコマンド制御を実現し、フィードバックフレームはモーターが上位コントローラに送信する状態データです。
-モーターで選択されたモードに応じて、受信フレームのフォーマット定義とフレームIDはそれぞれ異なりますが、各種モードにおけるフィードバックフレームは共通です。
+The control uses the CAN standard frame format with a fixed baud rate of 1 Mbps. 
+It is divided into receive frames and feedback frames. Receive frames contain the received control data, used to command and control the motor.
+feedback frames contain the motor's status data sent to the upper-level controller. Depending on the selected motor mode, the receive frame format and frame IDs are different, but the feedback frame is the same across all modes.
 
-### フィードバックフレーム
+### Feedback frame
 
-フィードバックフレームIDはデバッグアシスタントで設定され（Master ID）、デフォルトは0です。
-主にモーターの位置、速度、トルク情報をフィードバックし、そのフレームフォーマットは以下のように定義されます：
+The feedback frame ID is set by the debugging assistant (Master ID), with a default value 0. It mainly provides motor's position, speed, and torque information, and its frame format is defined as follows:
 
-| フィードバックメッセージ | D[0] | D[1] | D[2] | D[3] | D[4] | D[5] | D[6] | D[7] |
+| Feedback message | D[0] | D[1] | D[2] | D[3] | D[4] | D[5] | D[6] | D[7] |
 |--|--|--|--|--|--|--|--|--|
 | MST_ID | ID\|ERR&lt;&lt;4 | POS[15:8] | POS[7:0] | VEL[11:4] | VEL[3:0]\|T[11:8] | T[7:0] | T_MOS | T_Rotor |
 
 
 
-ID はコントローラのIDを表し、CAN_IDの下位8ビットを取ります。
+ID represents controller's ID, It is come from CAN_ID's lower 8 bit.
 
 * ERR
 
-  故障を示し、対応する故障タイプは以下の通りです：
+  It shows fault,The corresponding fault type is as shown:
+  * 0------Disable
+  * 1------Enable
+  * 8------Over voltage；
+  * 9------Under voltage；
+  * A------Over current；
+  * B------MOSFET Overheat；
+  * C------Coil Overheat；
+  * D------COmmunication lost；
+  * E------Overloaded；
 
-  * 8------過圧；
-  * 9------低電圧；
-  * A------過電流；
-  * B------MOS過熱；
-  * C------モーターコイル過熱；
-  * D------通信断；
-  * E------過負荷；
+* POS: Motor position 
+* VEL: Motor speed
+* T: Motor output torque
+* T_MOS: Average temperature of MOSFETS mounted on the driver (unit: degree)
+* T_Rotor: Average temperature of Motor's coil（unit: degree）
 
-* POS：モーターの位置情報
-* VEL：モーターの速度情報
-* T：モーターのトルク情報
-* T_MOS はドライバ上の MOS の平均温度（単位：℃）
-* T_Rotor はモーター内部コイルの平均温度（単位：℃）
+Position, velocity, and torque are converted from floating-point data into signed fixed-point data using a linear mapping method.
+Position using 16-bit data and velocity and torque using 12-bit data.
 
-位置、速度、トルクは線形マッピングを用いて浮動小数点データを符号付き固定小数点データに変換します。
-位置は16ビットデータ、速度とトルクは12ビットを使用します。
+### Control frame in MIT mode
 
-### MITモードにおける制御フレーム
-
-| 制御メッセージ | D[0] | D[1] | D[2] | D[3] | D[4] | D[5] | D[6] | D[7] |
+| Control message | D[0] | D[1] | D[2] | D[3] | D[4] | D[5] | D[6] | D[7] |
 |--|--|--|--|--|--|--|--|--|
 | ID | p_des[15:8] | p_des[7:0] | v_des[11:4] | v_des[3:0]\|Kp[11:8] | Kp[7:0] | Kd[11:4] | Kd[3:0]\|t_ff[11:8]  | t_ff[7:0] |
 
-フレームIDは、設定されたCAN ID値と等しいです。
+The frame ID is as same as the CAN_ID set by debugging assistant.
 
-* p_des：位置指令値
-* v_des：速度指令値
-* Kp：位置比例係数
-* Kd：位置微分係数
-* t_ff：トルク指令値
+* p_des：Desired position
+* v_des：Desired speed
+* Kp：Proportional control ratio for position control
+* Kd：Derivative control ration for speed control
+* t_ff：Feed forward torque value
 
-各パラメータは前節のマッピング関係に準拠し、p_des、v_des、t_ffの範囲はデバッグアシスタントで設定できます。
+Each parameter conforms to the mapping method in the previous section. The numbers of p_des, v_des, and t_ff can be set by the debugging assistant. 
 
-Kpの範囲は[0,500]、Kdの範囲は[0,5]です。
+The range of Kp is [0, 500], and the range of Kd is [0, 5].
 
-標準CANデータフレームは8バイトのみであり、MITの制御コマンドフォーマットではPosition、Velocity、Kp、Kd、Torqueの5つのパラメータを8バイトにビット単位で組み合わせます。
-内訳：Positionが2バイト（16ビット）、Velocityが12ビット、Kpが12ビット、Kdが12ビットを占めます。
+Assignment: CAN number is only one level, with 8 characters, MIT's restraint command format:
+Position, Velocity, Kp, Kd, ​​Torque. Among them:
+Position 2 characters 16th, Velocity 12th, Kp 12th, Kd 12th
 
-### 位置速度モードにおける制御フレーム
+### Control frame of Position speed mode
 
 <table>
   <thead>
     <tr>
-      <th>制御メッセージ</th>
+      <th>Control message</th>
       <th>D[0]</th>
       <th>D[1]</th>
       <th>D[2]</th>
@@ -261,20 +260,19 @@ Kpの範囲は[0,500]、Kdの範囲は[0,5]です。
   </tbody>
 </table>
 
-フレームIDは設定されたCAN ID値に0x100をオフセットした値です。
+The frame ID is the set CAN ID value plus an offset of 0x100.
 
-* p_des：位置指令、浮動小数点型。低位バイトが先頭、高位バイトが後ろに並ぶデータ配置（リトルエンディアン）
-* v_des：速度指令、浮動小数点型。低位バイトが先頭、高位バイトが後ろに並ぶデータ配置（リトルエンディアン）
+* p_des：Target position, floating-point type LSB first,MSB last (little endian).
+* v_des：Target speed, floating-point type LSB first,MSB last (little endian).
 
-ここで送信するコマンドのCAN IDは *0x100+ID* です。
-速度指令は台形加速度動作時の最高速度、すなわち等速区間の速度値です。
+The CAN ID for the command here is 0x100+ID. The target speed is the highest speed of trapezoidal acceleration, which is the speed value of the constant speed segment.
 
-### 速度モード制御フレーム
+### Speed mode control frame
 
 <table>
   <thead>
     <tr>
-      <th>制御メッセージ</th>
+      <th>Control message</th>
       <th>D[0]</th>
       <th>D[1]</th>
       <th>D[2]</th>
@@ -289,164 +287,157 @@ Kpの範囲は[0,500]、Kdの範囲は[0,5]です。
   </tbody>
 </table>
 
-フレームIDは設定されたCAN ID値に0x200のオフセットを加えた値です。
+The frame ID is the set CAN ID value plus an offset of 0x200.
 
-* v_des：速度指令、浮動小数点型。低位バイトが先頭、高位バイトが後ろに並ぶデータ配置（リトルエンディアン）
+* v_des：Target speed, floating-point type LSB first,MSB last (little endian).
 
-こで送信するコマンドのCAN IDは *0x200+ID* です。
+The CAN ID for the command here is 0x200+ID.
 
-## DAMIAOデバッグアシスタントを使用
+## Use Damiao Technology Debugging Assistant
 
-DAMIAO USB-CAN変換デバッグツールを使用し、PCとモーターを接続します。
-DAMIAOアシスタントでモーターのパラメータ設定およびファームウェアの更新ができます。
+Connect the computer and the motor via Damiao Technology USB-CAN debugging tool.  
+You can set the motor parameters and upgrade the firmware from Damiao Technology assistant.
 
-モーターデバッグ用シリアルポートはGH1.25コネクタ-3ピンでPCに接続、CAN通信端子はGH1.25コネクタ-2ピンで接続します。
+The motor debugging serial port is connected to the PC via the GH1.25 connector cable -3pin. The CAN communication terminal in the motor power interface is connected to the USB to CAN debugging tool via GH1.25 -2pin connector cable. The motor parameters are set and firmware is upgraded using the Damiao Technology debugging assistant.
 
-USB-CAN変換デバッグツールを接続し、DAMIAOデバッグアシスタントを用いてモーターのパラメータ設定やファームウェア更新などを行います。
-モーターのシリアルポート、CANポート、電源インターフェースを接続後、PC側でDAMIAOデバッグアシスタントを起動し、対応するシリアルポートを選択してシリアル通信を有効にします。
-この状態でモーターに電源を供給すると、シリアルポートから情報が出力され、「Control Mode」が現在の駆動モードを示します。
+After connecting the motor's serial port, CAN port, and power interface, open the Damiao Technology Debugging Assistant on the computer.Select the corresponding serial port device, and open the serial port. 
+Then, supply power to the motor; the serial port will print information, with "Control Mode" indicating the current drive mode.
 
-ポートデバイスを選択しシリアルポートを開きます。
-この時点でモーターに電源を供給すると、シリアルポートに情報が表示され、Control Modeが現在の駆動モードを示します。
+## Motor parameters
 
-## 特性パラメータ
-
-以下のパラメータに基づきモーターを適切にご使用ください。
-
-説明：DM-J8009P-2ECの出力軸はクロスローラーベアリング、DM-J8009-2ECの出力軸は薄肉深溝玉軸受です。
+Please use the motor appropriately according to the following parameters.<br>
+Note: The output shaft of DM-J8009P-2EC uses a crossed roller bearing; the output shaft of DM-J8009-2EC uses a thin-walled deep groove ball bearing.
 
 <table>
   <tbody>
     <tr>
-      <th rowspan="7">モーターパラメータ</th>
-      <td>定格電圧</td>
-      <td>24V（24-48V対応）</td>
+      <th rowspan="7">Motor parameters</th>
+      <td>Rated voltage</td>
+      <td>24V（24-48V）</td>
     </tr>
     <tr>
-      <td>定格電流</td>
+      <td>Rated current</td>
       <td>20A</td>
     </tr>
     <tr>
-      <td>ピーク電流</td>
+      <td>Peak current</td>
       <td>50A</td>
     </tr>
     <tr>
-      <td>定格トルク</td>
+      <td>Rated torque</td>
       <td>20NM</td>
     </tr>
     <tr>
-      <td>ピークトルク</td>
+      <td>Peak torque</td>
       <td>40NM</td>
     </tr>
     <tr>
-      <td>定格回転数</td>
+      <td>Rated speed</td>
       <td>100rpm</td>
     </tr>
     <tr>
-      <td>無負荷時最高回転数</td>
+      <td>Maximun speed at non-loaded condition</td>
       <td>24V：160rpm；48V：320rpm；</td>
     </tr>
 
     <tr>
-      <th rowspan="4">モーター特性値</th>
-      <td>減速比</td>
+      <th rowspan="4">Motor charactics</th>
+      <td>Reduction ratio</td>
       <td>9:1</td>
     </tr>
     <tr>
-      <td>極対数</td>
+      <td>Number of pole pairs</td>
       <td>21</td>
     </tr>
     <tr>
-      <td>相インダクタンス</td>
+      <td>Phase inductance</td>
       <td>80μh</td>
     </tr>
     <tr>
-      <td>相抵抗</td>
+      <td>Phase resistance<</td>
       <td>0.145Ω</td>
     </tr>
 
     <tr>
-      <th rowspan="3">構造と重量</th>
-      <td>外径</td>
+      <th rowspan="3">Structure and weight</th>
+      <td>Outer diameter</td>
       <td>98mm</td>
     </tr>
     <tr>
-      <td>高さ</td>
+      <td>Height</td>
       <td>61.7mm</td>
     </tr>
     <tr>
-      <td>モーター重量</td>
+      <td>Weight</td>
       <td>約930g</td>
     </tr>
 
     <tr>
-      <th rowspan="3">エンコーダ</th>
-      <td>エンコーダビット数</td>
-      <td>14ビット</td>
+      <th rowspan="3">Encoders</th>
+      <td>Encoder's resolution</td>
+      <td>14 bit</td>
     </tr>
     <tr>
-      <td>エンコーダ個数</td>
+      <td>Number of encoders</td>
       <td>2</td>
     </tr>
     <tr>
-      <td>エンコーダタイプ</td>
-      <td>磁気式エンコーダ（シングルターン、出力軸1回転の絶対位置）</td>
+      <td>Encoder type</td>
+      <td>Magnetic (single lap, absolute position)</td>
     </tr>
 
     <tr>
-      <th rowspan="2">通信</th>
-      <td>制御インターフェース</td>
+      <th rowspan="2">Communication</th>
+      <td>Control interface</td>
       <td>CAN@1Mbps</td>
     </tr>
     <tr>
-      <td>パラメータ設定インターフェース</td>
+      <td>Parameter adjust interface</td>
       <td>UART@921600bps</td>
     </tr>
 
     <tr>
-      <th rowspan="9">制御と保護</th>
-      <td rowspan="3">制御モード</td>
-      <td>MITモード</td>
+      <th rowspan="9">Control and protction</th>
+      <td rowspan="3">Control mode</td>
+      <td>MIT mode</td>
     </tr>
     <tr>
-      <td>速度モード</td>
+      <td>Speed mode</td>
     </tr>
     <tr>
-      <td>位置モード</td>
+      <td>Position mode</td>
     </tr>
     <tr>
-      <td rowspan="6">保護</td>
+      <td rowspan="6">Protection</td>
       <td>
-        ドライバー過熱保護、保護温度：120℃、過熱時は「イネーブルモード」を解除します。
+	Driver overheat protection: The protection temperature is 120℃. If the temperature exceeds this limit, the motor will exit "Enable mode".
       </td>
     </tr>
     <tr>
       <td>
-        コイル過熱保護、使用要件に基づき設定、推奨上限温度は100℃を超えないことを推奨します。
-        過熱時はモーターが「イネーブルモード」を解除します。
+	Motor overheat protection. It should be set according to requirements of useage however recommended not to exceed 100℃.
+        Over-temperature protection will cause the motor to exit "Enable mode".
       </td>
     </tr>
     <tr>
       <td>
-        モーター過電圧保護、使用要件に基づき設定、52Vを超えないことを推奨します。
-        過電圧時は「イネーブルモード」を解除します。
+	Motor overvoltage protection should be set according to usage requirements, but it is recommended not to exceed 52V. 
+	Overvoltage will exit "Enable mode".
       </td>
     </tr>
     <tr>
       <td>
-        通信切断保護：設定周期内にCAN指令を受信しない場合、自動的に「イネーブルモード」を解除します。
+	Communication loss protection: If no CAN command is received within a set period, the system will automatically exit "Enable Mode".
       </td>
     </tr>
     <tr>
       <td>
-        モーター過電流保護：使用要件に基づき設定、推奨上限は39Aを超えないことを推奨します。
-        過電流時は「イネーブルモード」を解除します。
+        Motor overcurrent protection: It should be set according to usage requirements, but it is recommended not to exceed 39A. Overcurrent will exit "Enable mode".
       </td>
     </tr>
     <tr>
       <td>
-        モーターの低電圧保護機能。電源電圧が設定値を下回った場合、「イネーブルモード」を解除します。
-        電源電圧は15V以上を推奨します。
+	Motor undervoltage protection: If the power supply voltage is lower than the set value, the "enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
       </td>
     </tr>
   </tbody>
