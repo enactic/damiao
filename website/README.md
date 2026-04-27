@@ -12,7 +12,7 @@ npm ci
 
 You need to use npx command to make eng page work.
 ```bash
-npx docusaurus serve
+npm run serve
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
