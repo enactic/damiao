@@ -44,12 +44,12 @@ Updates will not be notified when occured.
 
 ## Features
 
-1. Dual encoder equipped, single-turn absolute position output provide no loss of absolute position during power outages.
-2. Integrated motor and driver design, compact structure, and high integration.
-3. Visualized debugging and firmware upgrades supported by Damiao debugging tools.
-4. Readable motor speed, position, torque, and temperature information via CAN bus.
-5. Dual temperature protection.
-6. Supports trapezoidal acceleration and deceleration in position mode.
+1. Dual encoder equipped, single-turn absolute position output provide no loss of absolute position during power outages
+2. Integrated motor and driver design, compact structure, and high integration
+3. Visualized debugging and firmware upgrades supported by Damiao debugging tools
+4. Readable motor speed, position, torque, and temperature information via CAN bus
+5. Dual temperature protection
+6. Supports trapezoidal acceleration and deceleration in position mode
 
 ## Packing list
 
@@ -196,13 +196,13 @@ ID represents controller's ID, It is come from CAN_ID's lower 8 bit.
 * ERR
 
   It shows fault,The corresponding fault type is as shown:
-  * 8------Over voltage；
-  * 9------Under voltage；
-  * A------Over current；
-  * B------MOSFET Overheat；
-  * C------Coil Overheat；
-  * D------COmmunication lost；
-  * E------Overloaded；
+  * 8------Over voltage
+  * 9------Under voltage
+  * A------Over current
+  * B------MOSFET Overheat
+  * C------Coil Overheat
+  * D------COmmunication lost
+  * E------Overloaded
 
 * POS: Motor position 
 * VEL: Motor speed
@@ -211,7 +211,7 @@ ID represents controller's ID, It is come from CAN_ID's lower 8 bit.
 * T_Rotor: Average temperature of Motor's coil（unit: degree）
 
 Position, velocity, and torque are converted from floating-point data into signed fixed-point data using a linear mapping method.
-Position using 16-bit data and velocity and torque using 12-bit data.
+Position using 16 bit data and velocity and torque using 12 bit data.
 
 ### Control frame in MIT mode
 
@@ -233,7 +233,7 @@ The range of Kp is [0, 500], and the range of Kd is [0, 5].
 
 Assignment: CAN number is only one level, with 8 characters, MIT's restraint command format:
 Position, Velocity, Kp, Kd, ​​Torque. Among them:
-Position 2 characters 16th, Velocity 12th, Kp 12th, Kd 12th
+Position 2 characters 16 bits, Velocity 12 bits, Kp 12 bits, Kd 12 bits
 
 A standard CAN data frame consists only 8 bytes of data. MIT's control command format combines five parameters—Position, Velocity, Kp, Kd, ​​and Torque—into 8 bytes.
 
@@ -437,7 +437,7 @@ Please use the motor appropriately according to the following parameters.
     </tr>
     <tr>
       <td>
-	Communication loss protection: If no CAN command is received within a set period, the system will automatically exit "Enable Mode".	
+	Communication loss protection: If no CAN command is received within a set period, the system will automatically exit "Enable mode".	
       </td>
     </tr>
     <tr>
@@ -447,7 +447,7 @@ Please use the motor appropriately according to the following parameters.
     </tr>
     <tr>
       <td>
-        Motor undervoltage protection: If the power supply voltage is lower than the set value, the "enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
+        Motor undervoltage protection: If the power supply voltage is lower than the set value, the "Enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
       </td>
     </tr>
   </tbody>

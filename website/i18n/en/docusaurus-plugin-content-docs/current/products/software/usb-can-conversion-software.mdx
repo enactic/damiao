@@ -72,7 +72,7 @@ Please select the COM port connected to the debugging module. If not found, clic
 * Baud rate: 921600
 * Data bits: 8
 * Parity: None
-* Stop bits: One. 
+* Stop bits: One
 
 Keep these parameters at their default settings.
 After setting, click the link in the red box in the lower left corner to open the serial port.
@@ -90,7 +90,7 @@ Connection succeed, the Disconnect icon in the lower left corner will flash red 
 #### 1
 
 1. The baud rate for communication with the device is 1000kbps by default. Please set it according to the device's baud rate settings. 
-Currently, the following baud rates are supported:
+Currently, the following baud rates are supported.
 
 <BlockImage src="products/usb-can-conversion-software/image10.jpeg" />
 
@@ -110,7 +110,11 @@ Send Data: 8 bytes of data sent to the device. Users can modify this; the unit i
 
 DATA递增 (DATA increment): When checked, if the number of sends is greater than 1, the data sent will automatically increment by 1 each time.
 
-(e.g.) if the data sent is 01 00 00 00 00 00 00 00, and the number of sends is 2, the data sent will be as shown
+(e.g.) if the data sent is 
+```
+01 00 00 00 00 00 00 00
+```
+and the number of sends is 2, the data sent will be as shown
 
 ```
 01 00 00 00 00 00 00 00
@@ -119,7 +123,18 @@ DATA递增 (DATA increment): When checked, if the number of sends is greater tha
 
 When the data reaches FF, it carries over to the next bit. 
 
-(e.g.) If the sent data is FF 00 00 00 00 00 00 00, the next sent data will be 00 01 00 00 00 00 00 00, and the next sent data will be 01 01 00 00 00 00 00 00.
+(e.g.) If the sent data is 
+```
+FF 00 00 00 00 00 00 00
+```
+the next sent data will be 
+```
+00 01 00 00 00 00 00 00
+```
+and the next sent data will be 
+```
+01 01 00 00 00 00 00 00
+```
 
 ID递增 (ID increment): When checked, if the number of transmissions exceeds 1, the frame ID will be automatically incremented by 1 for each transmission.
 

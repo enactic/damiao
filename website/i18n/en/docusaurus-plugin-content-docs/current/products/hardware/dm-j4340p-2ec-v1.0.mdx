@@ -44,12 +44,12 @@ Updates will not be notified when occured.
 
 ## Features
 
-1. Dual encoder equipped, single-turn absolute position output provide no loss of absolute position during power outages.
-2. Integrated motor and driver design, compact structure, and high integration.
-3. Visualized debugging and firmware upgrades supported by Damiao debugging tools.
-4. Readable motor speed, position, torque, and temperature information via CAN bus.
-5. Dual temperature protection.
-6. Supports trapezoidal acceleration and deceleration in position mode.
+1. Dual encoder equipped, single-turn absolute position output provide no loss of absolute position during power outages
+2. Integrated motor and driver design, compact structure, and high integration
+3. Visualized debugging and firmware upgrades supported by Damiao debugging tools
+4. Readable motor speed, position, torque, and temperature information via CAN bus
+5. Dual temperature protection
+6. Supports trapezoidal acceleration and deceleration in position mode
 
 ## Packing list
 
@@ -207,13 +207,13 @@ ID represents controller's ID, It is come from CAN_ID's lower 8 bit.
   It shows fault,The corresponding fault type is as shown:
   * 0------Disable
   * 1------Enable
-  * 8------Over voltage；
-  * 9------Under voltage；
-  * A------Over current；
-  * B------MOSFET Overheat；
-  * C------Coil Overheat；
-  * D------COmmunication lost；
-  * E------Overloaded；
+  * 8------Over voltage
+  * 9------Under voltage
+  * A------Over current
+  * B------MOSFET Overheat
+  * C------Coil Overheat
+  * D------COmmunication lost
+  * E------Overloaded
 
 * POS: Motor position 
 * VEL: Motor speed
@@ -222,7 +222,7 @@ ID represents controller's ID, It is come from CAN_ID's lower 8 bit.
 * T_Rotor: Average temperature of Motor's coil（unit: degree）
 
 Position, velocity, and torque are converted from floating-point data into signed fixed-point data using a linear mapping method.
-Position using 16-bit data and velocity and torque using 12-bit data.
+Position using 16 bit data and velocity and torque using 12 bit data.
 
 ### Control frame in MIT mode
 
@@ -244,7 +244,7 @@ The range of Kp is [0, 500], and the range of Kd is [0, 5].
 
 Assignment: CAN number is only one level, with 8 characters, MIT's restraint command format:
 Position, Velocity, Kp, Kd, ​​Torque. Among them:
-Position 2 characters 16th, Velocity 12th, Kp 12th, Kd 12th
+Position 2 characters 16 bits, Velocity 12 bits, Kp 12 bits, Kd 12 bits
 
 ### Control frame of Position speed mode
 
@@ -337,10 +337,10 @@ Control messege is as follows:
 * p_des
   * Target position given in rad, floating-point,LSB first, MSB last.
 * v_des
-  * Speed ​​limit value in rad/s, magnified by 100, Type is unsigned 16-bit, LSB first, MSB last, range is 0-10000, Exceeding 10000 will be limited to 10000, so the corresponding actual speed limit is 0~100rad/s;
+  * Speed ​​limit value in rad/s, magnified by 100, Type is unsigned 16 bit, LSB first, MSB last, range is 0-10000, Exceeding 10000 will be limited to 10000, so the corresponding actual speed limit is 0~100rad/s;
 * i_des
   *Torque current limit value, magnified 10000. 
-Type is unsigned 16-bit, LSB first, MSB last.
+Type is unsigned 16 bit, LSB first, MSB last.
 The range is 0-10000, exceeding 10000 will be limited to 10000.
 the corresponding actual current limit per-unit is 0-1.0 current per-unit value: actual current value divided by maximum current value, DM-J4340P-2EC maximum current 10.26A.
 
@@ -674,7 +674,7 @@ Motor overvoltage protection should be set according to usage requirements, but 
     </tr>
     <tr>
       <td colspan="2">
-        Communication loss protection: If no CAN command is received within a set period, the system will automatically exit "Enable Mode".
+        Communication loss protection: If no CAN command is received within a set period, the system will automatically exit "Enable mode".
       </td>
     </tr>
     <tr>
@@ -684,10 +684,10 @@ Motor overvoltage protection should be set according to usage requirements, but 
     </tr>
     <tr>
       <td>
-	Motor undervoltage protection: If the power supply voltage is lower than the set value, the "enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
+	Motor undervoltage protection: If the power supply voltage is lower than the set value, the "Enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
       </td>
       <td>
-	Motor undervoltage protection: If the power supply voltage is lower than the set value, the "enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
+	Motor undervoltage protection: If the power supply voltage is lower than the set value, the "Enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
       </td>
     </tr>
   </tbody>
