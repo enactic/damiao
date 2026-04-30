@@ -2,7 +2,7 @@
 description: DM-J8009P-2EC (cross roller bearing) English user manual
 ---
 
-# DM-J8009P-2EC geared motor (cross roller bearing)
+# DM-J8009P-2EC geared motor (Cross roller bearing)
 
 ```mdx-code-block
 import BlockImage from '@site/src/components/BlockImage';
@@ -118,13 +118,13 @@ Refer the motor mounting hole dimensions and locations to install the motor into
       <td>
         <p>This indicates a fault, and the corresponding fault type is as shown:</p>
         <ul>
-	  <li>8------Over voltage；</li>
-          <li>9------Under voltage；</li>
-          <li>A------Over current；</li>
-          <li>B------MOSFET Over temperature；</li>
-          <li>C------Coil over temperature；</li>
-          <li>D------Communication lost；</li>
-          <li>E------Overloaded；</li>
+	  <li>8------Over voltage</li>
+          <li>9------Under voltage</li>
+          <li>A------Over current</li>
+          <li>B------MOSFET Over temperature</li>
+          <li>C------Coil over temperature</li>
+          <li>D------Communication lost</li>
+          <li>E------Overloaded</li>
         </ul>
 	<p>You can check the feedback frame and figure out which fault has occured via Damiao Technology debugging assistant interface.</p>
       </td>
@@ -142,7 +142,7 @@ The driver converts the received CAN data into control variables, calculates the
 
 <BlockImage src="products/dm-j8009p-2ec-v1.0/image6.jpeg" width="80%" />
 
-Based on the MIT (Mutual Aspect Ratio) model, various control modes can be derived. For example, when kp=0 and kd is not 0, a given v_des will achieve uniform rotation; when kp=0 and kd=0, a given t_ff will achieve a given torque output.
+Based on the MIT (Mutual Aspect Ratio) model, various control modes can be derived. For example, when kp=0 and kd is not 0, a given v_des will achieve uniform rotation. When kp=0 and kd=0, a given t_ff will achieve a given torque output.
 
 **Note: When controlling the position, kd cannot be set to 0.**
 **Otherwise it will cause the motor vibrate or go out of control.**
@@ -156,7 +156,7 @@ The position cascade mode employs a three-loop series control method. The positi
 p_des is the target position to be controlled, and v_des is the maximum absolute velocity value during the motion process.
 
 Using the control parameters recommended by the debugging assistant during the position cascade mode, it can achieve good control accuracy and a relatively smooth control, but the response time is relatively long. 
-In addition to v_des, configurable parameters include acceleration/deceleration settings; 
+In addition to v_des, configurable parameters include acceleration/deceleration settings.
 These parameters can compensate unexpected oscillations during control.
 
 **Note: p_des and v_des are in units of rad and rad/s respectively, and type float. **
@@ -300,7 +300,7 @@ You can set the motor parameters and upgrade the firmware from Damiao Technology
 The motor debugging serial port is connected to the PC via the GH1.25 connector cable -3pin. The CAN communication terminal in the motor power interface is connected to the USB to CAN debugging tool via GH1.25 -2pin connector cable. The motor parameters are set and firmware is upgraded using the Damiao Technology debugging assistant.
 
 After connecting the motor's serial port, CAN port, and power interface, open the Damiao Technology Debugging Assistant on the computer.Select the corresponding serial port device, and open the serial port. 
-Then, supply power to the motor; the serial port will print information, with "Control Mode" indicating the current drive mode.
+Then, supply power to the motor, the serial port will print information, with "Control Mode" indicating the current drive mode.
 
 ## Motor parameters
 
@@ -336,7 +336,7 @@ Note: The output shaft of DM-J8009P-2EC uses a crossed roller bearing; the outpu
     </tr>
     <tr>
       <td>Maximun speed at non-loaded condition</td>
-      <td>24V：160rpm；48V：320rpm；</td>
+      <td>24V：160rpm 48V：320rpm</td>
     </tr>
 
     <tr>
