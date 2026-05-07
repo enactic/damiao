@@ -10,12 +10,21 @@ npm ci
 
 ## Local Development
 
-You need to use npx command to make eng page work.
+Japanese page:
+
 ```bash
 npm run serve
 ```
 
+English page:
+
+```bash
+npm run start -- --locale en
+```
+
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+**Note that the dev server can only serve one locale at a time.**
 
 ## Build
 
