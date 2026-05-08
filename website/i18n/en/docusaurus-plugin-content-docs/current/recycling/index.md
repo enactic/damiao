@@ -29,5 +29,4 @@ Soto-Kanda 2-4-4<br />
 Chiyoda-ku Tokyo<br />
 
 Motor recycling group<br />
-Enactic.inc
-
+Enactic, Inc.
