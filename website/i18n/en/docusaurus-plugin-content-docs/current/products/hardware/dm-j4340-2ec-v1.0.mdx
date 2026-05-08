@@ -76,7 +76,7 @@ Updates may be made without notice.
           <li>Connect the power supply via the XT30(2+2)-F plug, with a rated voltage  24V to power the motor.</li>
           <li>By connecting to an external control device via the CAN communication terminal, it can receive CAN control commands and provide feedback on motor status information.</li>
           <li>
-            The motor has two power connctors. Either can be connected and used individually, or multiple motors can be connected in series, which makes wiring much easier.
+            The motor has two power connectors. Either can be connected and used individually, or multiple motors can be connected in series, which makes wiring much easier.
           </li>
         </ol>
       </td>
@@ -157,7 +157,7 @@ The position cascade mode employs a three-loop series control method. The positi
 p_des is the target position to be controlled, and v_des is the maximum absolute velocity value during the motion process.
 
 Using the control parameters recommended by the debugging assistant during the position cascade mode, it can achieve good control accuracy and a relatively smooth control, but the response time is relatively long. 
-In addition to v_des, configurable parameters include acceleraton/deceleration settings. 
+In addition to v_des, configurable parameters include acceleration/deceleration settings. 
 These parameters can compensate unexpected oscillations during control.
 
 **Note: p_des and v_des are in units of rad and rad/s respectively, and type float.**
@@ -347,13 +347,13 @@ Then, supply power to the motor, the serial port will print information, with "C
       <td>36rpm</td>
     </tr>
     <tr>
-      <td>Maximun speed at non-loaded condition</td>
+      <td>Maximum speed at non-loaded condition</td>
       <td>52rpm</td>
       <td>100rpm</td>
     </tr>
 
     <tr>
-      <th rowspan="4">Motor charactics</th>
+      <th rowspan="4">Motor characteristics</th>
       <td>Reduction ratio</td>
       <td>40:1</td>
       <td>40:1</td>
@@ -437,7 +437,7 @@ Then, supply power to the motor, the serial port will print information, with "C
     </tr>
     <tr>
       <td colspan="2">
-	Motor overheat protection. It should be set according to requirements of useage however recommended not to exceed 100℃.
+	Motor overheat protection. It should be set according to requirements of usage however recommended not to exceed 100℃.
         Over-temperature protection will cause the motor to exit "Enable mode".
       </td>
     </tr>
