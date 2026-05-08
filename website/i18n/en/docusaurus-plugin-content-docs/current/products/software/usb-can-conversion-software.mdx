@@ -1,0 +1,176 @@
+---
+title: USB-CAN converter software
+description: USB-CAN converter software English user manual
+---
+
+```mdx-code-block
+import BlockImage from '@site/src/components/BlockImage';
+```
+
+[Original user manual (Chinese)](/pdf/products/usb-can-conversion-software.pdf)
+
+This website is licensed under the Apache License 2.0.
+No license is granted for this documentation or the original documentation.
+
+# USB-CAN converter software manual
+
+The USB-to-CAN converter is a software developed by Damiao Technology that allows for visual transmission of CAN protocol data packets via a connected debugging module. Using this software and the debugging module, CAN protocol devices (motors, gyroscopes, etc.) can be debugged very easily.
+
+## 1. Download software
+
+https://gitee.com/kit-miao/dm-tools/blob/master/USB%E8%BD%ACCAN/%E4%B8%8A%E4%BD%8D%E6%9C%BA/USB2CAN_2.0.0.3.exe
+
+Download `USB2CAN_2.0.0.3.exe` from here.
+
+<BlockImage src="products/usb-can-conversion-software/image1.png" />
+
+Click [Download] and wait till the download ends.
+
+<BlockImage src="products/usb-can-conversion-software/image2.jpeg" />
+
+Open the software and enter the software interface.
+
+<BlockImage src="products/usb-can-conversion-software/image3.jpeg" />
+
+## 2. (Debug module) (Hardware)
+
+Sending CAN protocol data packets via USB to CAN requires the use of the official USB to CAN module from Damiao Technology.
+
+Purchase link: https://www.switch-science.com/products/10933
+
+The debugging module requires a Type-C to USB-A cable with data transfer capability to connect to the computer. The USB to CAN software requires a USB serial port.<br/>
+**Please ensure that the CH340/CH341 driver is installed on your computer.**
+
+<BlockImage src="products/usb-can-conversion-software/image4.jpeg" />
+
+The debugging module's CAN interface is model GH1.25-2pin. You can modify the wiring or add an adapter board according to the receiving device's interface. 
+
+Note:<br/>
+**The correct CAN pinout: CAN_L connects to CAN_L, and CAN_H connects to CAN_H.**
+
+<BlockImage src="products/usb-can-conversion-software/image5.jpeg" />
+
+After connecting the debugging module to the device, open the USB to CAN software.
+
+## 3. Using USB to CAN software
+
+### 3.1. Basic function usage
+
+<BlockImage src="products/usb-can-conversion-software/image6.jpeg" />
+
+1. Open File
+2. Save Current Sending/Receiving Data
+3. Clear All Current Sending/Receiving Data
+4. Counter
+5. Firmware Upgrade
+6. Version Information and Discussion Group
+
+### 3.2. Serial port settings
+
+Please select the COM port connected to the debugging module. If not found, click refresh in the lower left corner or check if the driver is installed. 
+
+* Baud rate: 921600
+* Data bits: 8
+* Parity: None
+* Stop bits: One
+
+Keep these parameters at their default settings.
+After setting, click the link in the red box in the lower left corner to open the serial port.
+
+<BlockImage src="products/usb-can-conversion-software/image7.jpeg" />
+
+Connection succeeded, the Disconnect icon in the lower left corner will flash red and green.
+
+<BlockImage src="products/usb-can-conversion-software/image8.jpeg" />
+
+### 3.3. CAN communication settings
+
+<BlockImage src="products/usb-can-conversion-software/image9.jpeg" />
+
+#### 1
+
+1. The baud rate for communication with the device is 1000kbps by default. Please set it according to the device's baud rate settings. 
+Currently, the following baud rates are supported.
+
+<BlockImage src="products/usb-can-conversion-software/image10.jpeg" />
+
+After selecting the corresponding baud rate, please click [设置 (Set)] to complete the update.
+
+#### 2
+
+Frame ID: Specifies the ID to be sent to the device. Users can modify this; the unit is hexadecimal.
+
+#### 3
+
+Send Data: 8 bytes of data sent to the device. Users can modify this; the unit is hexadecimal.
+
+<BlockImage src="products/usb-can-conversion-software/image11.jpeg" />
+
+#### 4
+
+DATA递增 (DATA increment): When checked, if the number of sends is greater than 1, the data sent will automatically increment by 1 each time.
+
+(e.g.) if the data sent is 
+```
+01 00 00 00 00 00 00 00
+```
+and the number of sends is 2, the data sent will be as shown
+
+```
+01 00 00 00 00 00 00 00
+02 00 00 00 00 00 00 00
+```
+
+When the data reaches FF, it carries over to the next bit. 
+
+(e.g.) If the sent data is 
+```
+FF 00 00 00 00 00 00 00
+```
+the next sent data will be 
+```
+00 01 00 00 00 00 00 00
+```
+and the next sent data will be 
+```
+01 01 00 00 00 00 00 00
+```
+
+ID递增 (ID increment): When checked, if the number of transmissions exceeds 1, the frame ID will be automatically incremented by 1 for each transmission.
+
+#### 5
+
+发送次数(Number of transmissions): You can select how many times to send data to the device after clicking send.
+定时发送(Send interval): When the number of transmissions is greater than 1, the interval between each transmission.
+
+#### 6
+
+帧格式 (Frame format): Frame format: You can choose between standard and extended.
+Depending on the device's frame ID.
+
+帧类型 (Frame type): Data frames and remote frames can be selected, depending on the device's CAN protocol.
+
+#### 7
+
+发送 (Send): Click to send CAN data.<br/>
+停止 (Stop): Pause sending.
+
+### 3.4. CAN send and receive interface
+
+After clicking "Send," if the CAN data is successfully sent, the status will display "Send Successful." If it displays "Send Failed," please check the serial communication, CAN wiring interface, and receiving device for proper functioning.
+
+If the device returns CAN data, the received data and parameters will be displayed on the interface.
+
+<BlockImage src="products/usb-can-conversion-software/image12.jpeg" />
+
+### 3.5. Serial port
+
+USB to CAN converters can also transmit via serial port. Connect the device through the GH-1.25-3pin interface on the debugging module. Note the pinout: GND to GND, RXD to TXD, and TXD to RXD.
+
+<BlockImage src="products/usb-can-conversion-software/image13.jpeg" />
+
+### 3.6. CAN load
+
+USB to CAN converter allows for real-time monitoring of the CAN bus load.
+
+<BlockImage src="products/usb-can-conversion-software/image14.jpeg" />

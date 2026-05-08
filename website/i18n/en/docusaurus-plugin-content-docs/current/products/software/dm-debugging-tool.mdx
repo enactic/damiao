@@ -1,0 +1,808 @@
+---
+title: DAMIAO debugging tools
+description: DAMIAO debugging tools English user manual
+---
+
+# DAMIAO debugging tools
+
+```mdx-code-block
+import BlockImage from '@site/src/components/BlockImage';
+import InlineImage from '@site/src/components/InlineImage';
+```
+
+[Original user manual（Chinese）](/pdf/products/dm-debugging-tool.pdf)
+
+This website is licensed under the Apache License 2.0.
+No license is granted for this documentation or the original documentation.
+
+| Date | Version | Changes |
+|--|--|--|
+| 2025.03.28 | V1.0 | First version created |
+
+## Description
+
+Damiao Debugging tools is a PC application designed specifically for DM series motors. It can perform operations such as reading and writing motor parameters, reading versions, firmware upgrades, and motor debugging, and intuitively configure driver parameters.
+
+## Disclaimer
+
+By using this product, you acknowledge that you have carefully read this document, understand, acknowledge, and accept all the terms and contents of this document and all related documents concerning this product.	
+
+You promise to use this product only for legitimate purposes. You promise to assume full responsibility for the use of this product and any consequences that may arise.
+DAMIAO Technology shall not be liable for any damage, injury, or any legal liability caused directly or indirectly by the use of this product. 
+
+DAMIAO is a trademark of Shenzhen DAMIAO Technology Co., Ltd. Product names, brands, etc. Appearing in this document are trademarks of their respective companies. This product and manual are copyrighted by Shenzhen DAMIAO Technology Co. Ltd. Reproduction or reprinting without permission will be prohibited. The final interpretation right of this document and all related documents concerning this product belongs to Shenzhen DAMIAO Technology Co., Ltd. 
+
+Updates may be made without notice.
+
+## Warnings
+
+1. Please read the user manual carefully before use.
+2. Motor parameters must be set strictly according to the motor manual.
+3. Motor firmware can be obtained through official channels (official website, forum, official group chat).
+4. If you encounter abnormal phenomena such as the motor spinning wildly during debugging, please disconnect the power immediately and contact a professional.
+5. If the motor has not been firmware flashed/initialized, the recommended usage sequence is: Open serial port - Read version - Select firmware upgrade - Motor-side encoder calibration - Parameter calibration - Output shaft encoder calibration - Debugging.
+6. Functions involving CAN debugging require the use of a USB2CAN module.
+
+## Interface overview
+
+### Main interface
+
+<BlockImage src="products/dm-debugging-tool/image1.jpg" />
+
+#### 1. Function bar
+
+<InlineImage src="products/dm-debugging-tool/image2.jpg" />
+
+* 串口 (Serial port)
+  * Serial port mode send/receive interface
+* 参数设置 (Parameter settings)
+  * Set motor parameter interface
+* 校准 (Calibration)
+  * Motor calibration waveform interface
+* 调试 (Debug)
+  * Motor debugging interface
+* 解析 (Parse)
+  * Motor feedback data parsing interface
+* 关于 (About)
+  * Version information and contact information
+
+#### 2. 串口设置 (Serial port settings)
+
+<InlineImage src="products/dm-debugging-tool/image3.jpg" />: Refresh available serial ports
+
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />: Open available serial port
+
+#### 3. 串口接收设置 (Serial port receive settings)
+
+<InlineImage src="products/dm-debugging-tool/image5.jpg" />: Switch the serial port data display status to show receive/pause receive.
+
+<InlineImage src="products/dm-debugging-tool/image6.jpg" />: Switch serial port data display format: ASCII/HEX
+
+#### 4. 通讯模式切换（Communication mode switching）
+
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />: Switch the current communication mode to UART/CAN.
+
+#### 5. 固件升级（Firmware update）
+
+<InlineImage src="products/dm-debugging-tool/image8.jpg" />:  Read version information
+
+<InlineImage src="products/dm-debugging-tool/image9.jpg" />:  Display version information
+
+<InlineImage src="products/dm-debugging-tool/image10.jpg" />:  Firmware selection
+
+<InlineImage src="products/dm-debugging-tool/image11.jpg" />:  Firmware update
+
+<InlineImage src="products/dm-debugging-tool/image12.jpg" />:  Show firmware name
+
+#### 6. 电机校准（Motor calibration）
+
+<InlineImage src="products/dm-debugging-tool/image13.jpg" />:  Switch calibration encoder object.<br />
+motor-side encoder/output shaft encoder
+
+<InlineImage src="products/dm-debugging-tool/image14.jpg" />: Calibrate the selected encoder
+
+#### 7. 电机参数预设（Motor parameter preset）
+
+<InlineImage src="products/dm-debugging-tool/image15.jpg" />: Parameter export
+
+<InlineImage src="products/dm-debugging-tool/image16.jpg" />: Parameter import
+
+#### 8. 版本号查看（View version number）
+
+<InlineImage src="products/dm-debugging-tool/image17.jpg" />:  Debugging tools version number information
+
+#### 9. 中英文切换 (Language switch CN/EN)
+
+<InlineImage src="products/dm-debugging-tool/image18.jpg" />:  Switch languages CN / EN (Chinese/English)
+
+#### 10. 状态栏 (Status bar)
+
+<InlineImage src="products/dm-debugging-tool/image19.jpg" />
+
+### 串口 (Serial interface)
+
+<BlockImage src="products/dm-debugging-tool/image20.jpg" />
+
+#### 1. 串口界面串口打印信息(Serial port print information)
+
+Show serial port receiving data
+
+#### 2. 发送文本 ASCII / HEX 切换 (Switch ASCII/HEX for sending message)
+
+<InlineImage src="products/dm-debugging-tool/image21.jpg" />: The text in the input box can be toggled, and the switch value will show the current sending format.
+
+#### 3. 串口文本发送（Serial text sending）
+
+<InlineImage src="products/dm-debugging-tool/image22.jpg" />: Send input box's text
+
+#### 4. 发送文本输入框（Send input box's text）
+
+### 参数设置界面 (Parameter setting window)
+
+<BlockImage src="products/dm-debugging-tool/image23.jpg" />
+
+#### 1. 参数标定（Parameter calibration）
+
+<InlineImage src="products/dm-debugging-tool/image24.jpg" />: Motor parameter calibration
+
+#### 2. 驱动参数 (Drive parameter)
+
+Motor driver configuration parameters
+
+#### 3. 读参数（Read parameters）
+
+<InlineImage src="products/dm-debugging-tool/image25.jpg" />: Read motor parameters
+
+#### 4. 写参数（Write parameters）
+
+<InlineImage src="products/dm-debugging-tool/image26.jpg" />: Write motor parameters
+
+#### 5. 控制框图（Functional block diagram）
+
+Functional block diagram and CAN command format corresponding to the current control mode
+
+#### 6. 控制幅值参数（Control amplitude parameters）
+
+<InlineImage src="products/dm-debugging-tool/image27.jpg" />
+
+#### 7. 控制器参数读取（Read controller's parameters）
+
+#### 8.控制参数设置（Control parameter settings）
+
+<InlineImage src="products/dm-debugging-tool/image28.jpg" />
+
+<InlineImage src="products/dm-debugging-tool/image29.jpg" />: Read current controller parameters
+
+<InlineImage src="products/dm-debugging-tool/image30.jpg" />: Store current controller parameters temporarily
+
+<InlineImage src="products/dm-debugging-tool/image31.jpg" />
+
+#### 9. 控制模式选择（Select control mode）
+
+#### 10. 控制器参数暂存 (Save controller parameters)
+
+#### 11. 参数范围提示 (Parameter range prompt)
+
+<InlineImage src="products/dm-debugging-tool/image32.jpg" />: Parameter range prompt
+
+### 校准 (Calibration)
+
+<BlockImage src="products/dm-debugging-tool/image33.jpg" />
+
+#### 1. 校准波形展示（Debugging waveform display）
+
+#### 2. 波形图注（Waveform legends）
+
+<InlineImage src="products/dm-debugging-tool/image34.jpg" />: Waveform annotation<br />
+curve color - curve meaning
+
+#### 3. 校准进度条（Calibration progress bar）
+
+<InlineImage src="products/dm-debugging-tool/image35.jpg" />
+
+### 调试（Debug）
+
+<BlockImage src="products/dm-debugging-tool/image36.jpg" />
+
+#### 1. 调试波形展示（Debug waveform display）
+
+#### 2. 波形瞬时数据值（Waveform instantaneous data value）
+
+<InlineImage src="products/dm-debugging-tool/image37.jpg" />: Waveform instantaneous data value
+
+#### 3. CAN ID 读写（CAN ID read/write）
+
+<InlineImage src="products/dm-debugging-tool/image38.jpg" />: CAN ID display, ID format is hexadecimal data.
+
+<InlineImage src="products/dm-debugging-tool/image39.jpg" />: ID Read
+
+<InlineImage src="products/dm-debugging-tool/image40.jpg" />: ID Set
+
+#### 4. 电机模式（Motor mode）
+
+<InlineImage src="products/dm-debugging-tool/image41.jpg" />: Motor enable
+
+<InlineImage src="products/dm-debugging-tool/image42.jpg" />: Set the motor's current position as zero.
+
+<InlineImage src="products/dm-debugging-tool/image43.jpg" />: Motor disable
+
+#### 5. CAN 波特率设置（CAN baud rate setting）
+
+<InlineImage src="products/dm-debugging-tool/image44.jpg" />: <span style={{color: 'red'}}>USB-CAN debugger</span> CAN baud rate selection
+
+<InlineImage src="products/dm-debugging-tool/image45.jpg" />: Apply current baud rate
+
+<InlineImage src="products/dm-debugging-tool/image46.jpg" />: Switch speed unit: rad/s / rpm
+
+#### 6. 控制模式选择标签（Control mode select）
+
+<InlineImage src="products/dm-debugging-tool/image47.jpg" />
+
+#### 7. 目标参数设置（Target parameters setting）
+
+<InlineImage src="products/dm-debugging-tool/image48.jpg" />: The slider settings parameters are indicated by numbers below MIN-MAX, which represent boundary values.
+
+#### 8. CAN 数据帧发送反馈区域（CAN message delivery and response indication）
+
+<InlineImage src="products/dm-debugging-tool/image49.jpg" />: Display of sending CAN data frames
+
+<InlineImage src="products/dm-debugging-tool/image50.jpg" />: Motor status display from receiving CAN feedback data frames
+
+<InlineImage src="products/dm-debugging-tool/image51.jpg" />: CAN data frame periodically transmission checkbox
+
+<InlineImage src="products/dm-debugging-tool/image52.jpg" />: CAN data frame transmission time interval, in milliseconds (ms)
+
+<InlineImage src="products/dm-debugging-tool/image53.jpg" />: Update continuously transmitted data after control parameter updates
+
+<InlineImage src="products/dm-debugging-tool/image54.jpg" />: Clear motor error status
+
+<InlineImage src="products/dm-debugging-tool/image55.jpg" />: Send CAN data frames according to the current control mode settings.
+
+<InlineImage src="products/dm-debugging-tool/image56.jpg" />: When the send button turns green (stop), it indicates "continuous sending mode".
+
+## Connect devices
+
+### Communication settings
+
+<BlockImage src="products/dm-debugging-tool/image57.jpg" />
+
+<br />
+
+<u>Tips: Not limited to USB2CAN, all general serial ports can be used</u>
+
+#### 1. 刷新串口（Refresh serial ports）（Step 1）
+
+When a new device is connected, click the "Refresh Serial Port" button (Figure ①) to scan and display the currently available serial ports.
+
+#### 2. 设置通讯配置（Communication settings）（Step 2）
+
+In the "Communication Settings", except for selecting the serial port number according to the actual situation, the baud rate, data bits, parity bits, and stop bits should remain at their default settings.
+
+#### 3. 打开串口（Open serial port）（Step 3）
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+## Serial communication
+
+In this communication mode, functions such as reading version, firmware upgrade, reading and writing parameters, importing and exporting parameters, parameter calibration, and motor-side/output shaft calibration can be performed.
+
+#### Features
+
+* Supports UART protocol, baud rate range: 1200-460800bps (default: 921600bps)
+* Supports ASCII/HEX format data transmission and reception, and supports custom frame headers/tails
+* Real-time display of received/sent data volume statistics (Received: 0 bytes | Sent: 0 bytes)
+
+<BlockImage src="products/dm-debugging-tool/image59.jpg" />
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为 UART 通讯（Switch to UART communication）（Step 2）
+
+In the "USB Mode" area, click
+<InlineImage src="products/dm-debugging-tool/image60.jpg" />button (Fig.2), to switch to 
+<InlineImage src="products/dm-debugging-tool/image7.jpg" />.
+If already<InlineImage src="products/dm-debugging-tool/image7.jpg" />, You don't have to switch communication mode.
+
+#### 3. 点击读版本 (Click to read version) (Step 3)
+
+Click <InlineImage src="products/dm-debugging-tool/image8.jpg" /> (Fig.3)
+
+#### 4. 查看固件和 bootloader 版本 (Check firmware and bootloader version) (step 4)
+
+<InlineImage src="products/dm-debugging-tool/image61.jpg" />
+
+### Firmware update
+
+<BlockImage src="products/dm-debugging-tool/image62.jpg" />
+
+#### Warnings
+
+1. Do not disconnect the power or break the connection during the upgrade process.
+2. The firmware version must be matched the motor model (see motor nameplate).
+3. If the upgrade fails, use the clear error function and try again.
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />. And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为 UART 通讯 (Switch to UART communication) (Step 2)
+
+At [USB 模式 (USB mode)], click
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> button (Fig.2) to switch communication mode to
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> mode. You don't have to switch communication mode is already
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> mode.
+
+#### 3. 选择要升级的固件（Select the firmware to update）（Step 3）
+
+Click
+<InlineImage src="products/dm-debugging-tool/image10.jpg" /> button(Fig.3) and select the firmware version you need to update.
+
+#### 4. 查看固件名称是否正确 (Check the firmware name is correct) (Step 4)
+
+<InlineImage src="products/dm-debugging-tool/image63.jpg" />
+
+This indicates the firmware version is 5.0.1.7 for the 4310 motor.
+
+#### 5. 开始固件升级（Start updating firmware）（Step 5）
+
+Click
+<InlineImage src="products/dm-debugging-tool/image11.jpg" /> button to start updating firmware.
+
+<InlineImage src="products/dm-debugging-tool/image64.jpg" />
+
+Check update progress.
+
+### Read parameters
+
+<BlockImage src="products/dm-debugging-tool/image65.jpg" />
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为 UART 通讯 (Switch to UART communication) (Step 2)
+
+At [USB 模式 (USB mode)], click
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> button (Fig.2) to switch communication mode to
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> mode. You don't have to switch communication mode is already
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> mode.
+
+#### 3. 切换到调试标签页 (Switch to debug tab) (Step 3)
+
+Click the “Parameter Settings” tab at the top of the interface (Fig.3) to switch to the parameter settings page.
+
+#### 4. 读参数 (Read parameters) (step 4)
+
+Click <InlineImage src="products/dm-debugging-tool/image66.jpg" /> button (Fig.4) to read the relevant parameters of the motor.
+
+### Write parameters
+
+<BlockImage src="products/dm-debugging-tool/image67.jpg" />
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为 UART 通讯 (Switch to UART mode) (Step 2)
+
+At [USB 模式 (USB mode)], click
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> button (Fig.2) to switch communication mode to
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> mode. You don't have to switch communication mode is already
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> mode.
+
+#### 3. 切换到调试标签页 (Switch to debug tab) (Step 3)
+
+Click the “Parameter Settings” tab at the top of the interface (Fig.3) to switch to the parameter settings page.
+
+#### 4. 修改参数 (Modify parameters) (Step 4)
+
+You can read the current parameter click <InlineImage src="products/dm-debugging-tool/image66.jpg" /> button or You can modify import parameters click 
+<InlineImage src="products/dm-debugging-tool/image16.jpg" /> button.
+
+<u>
+  Tips: Except for motor parameters, which cannot be modified, it is not recommended to modify the number of pole pairs (which is automatically identified after calibration). 
+  Exercise caution when modifying the reduction ratio.
+</u>
+
+#### 5. 写入参数 (Write parameters) (Step 5)
+
+After modifying parameters, click
+<InlineImage src="products/dm-debugging-tool/image68.jpg" /> button to write to the device.
+
+After successfully writing the parameters, the latest version will automatically perform  current parameters after reboot.
+At this point, you can observe an increase in the number of serial port receptions below, indicating that the reboot is complete.
+
+<u>
+  Writing parameters requires that the input parameters cannot be empty. 
+  It is recommended to first obtain the current parameters through the parameter reading or parameter import, and then modify them as needed. See the corresponding chapter for details.
+</u>
+
+### Parameter import and export
+
+<BlockImage src="products/dm-debugging-tool/image69.jpg" />
+
+#### 1. 读参数 (Read parameters) (Step 1)
+
+Click <InlineImage src="products/dm-debugging-tool/image66.jpg" /> button to read the relevant parameters of the motor.
+
+#### 2. 修改参数 (Modify parameters) (Step 2)
+
+Modify the parameter values ​​as needed in the corresponding parameter boxes (such as control amplitude, speed KP, etc.).
+
+#### 3. 导出参数 (Export parameters) (Step 3)
+
+Click <InlineImage src="products/dm-debugging-tool/image70.jpg" /> button(Fig.3) to export and save the current parameters.
+
+#### 4. 清空数据（Clear data）（Step 4）
+
+Click <InlineImage src="products/dm-debugging-tool/image71.jpg" /> button to clear relevant data.
+
+#### 5. 导入参数 (Import parameters) (Step 5)
+
+Click <InlineImage src="products/dm-debugging-tool/image16.jpg" /> button(Fig.5) to import the saved parameter file.
+
+Import (export) parameters are txt text files in the format [name:value]. Data with an empty value will be skipped during parameter import.
+
+Alternatively, you can modify the text file and then import.
+<span style={{color: 'red'}}>After importing the parameters, you need to write the parameters manually.</span>
+
+(e.g.):
+<InlineImage src="products/dm-debugging-tool/image72.jpg" />
+
+#### 6. 写入参数 (Write parameters) (Step 6)
+
+Click <InlineImage src="products/dm-debugging-tool/image68.jpg" /> button to write parameters to the device.
+
+### Parameters calibration
+
+<BlockImage src="products/dm-debugging-tool/image73.jpg" />
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 进行参数标定 (Parameter calibration) (Step 2)
+
+In the "Motor Parameters" area, click 
+<InlineImage src="products/dm-debugging-tool/image24.jpg" /> button(Fig.2).
+
+#### 3. 查看参数标定结果 (View parameter calibration results) (step 3)
+
+<InlineImage src="products/dm-debugging-tool/image74.jpg" />
+
+### Motor calibration
+
+<BlockImage src="products/dm-debugging-tool/image75.jpg" />
+
+Note: Clicking the calibration button will automatically switch to the calibration tab.
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为电机侧编码 (Switch to motor side encoder) (Step 2)
+
+In "Calibration" area, click
+<InlineImage src="products/dm-debugging-tool/image76.jpg" /> button(Fig.2) and switch to
+<InlineImage src="products/dm-debugging-tool/image13.jpg" /> calibration mode. 
+If it is already <InlineImage src="products/dm-debugging-tool/image13.jpg" /> you don't have to switch to calibration mode.
+
+
+#### 3. 开始校准 (Start calibration) (Step 3)
+
+Click <InlineImage src="products/dm-debugging-tool/image14.jpg" /> button(Fig.3) to
+start calibration.
+
+#### 4. 观察校准波形 (Observe the calibration waveform) (Step 4)
+
+During the calibration process, observe the calibration waveform displayed in the waveform area on the right (fig.4) to determine the calibration status.
+
+After calibration, a details window will pop up. You need to manually click the save button. Once saved successfully, a message "Transfer successful" will appear.
+
+<InlineImage src="products/dm-debugging-tool/image77.jpg" />
+
+### Output shaft calibration
+
+<BlockImage src="products/dm-debugging-tool/image78.jpg" />
+
+Note: Clicking the calibration button will automatically switch to the calibration tab.
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为电机侧编码 (Switch to motor side encoder) (Step 2)
+
+In "Calibration" area, click
+<InlineImage src="products/dm-debugging-tool/image76.jpg" /> button(Fig.2) and switch to
+<InlineImage src="products/dm-debugging-tool/image13.jpg" /> calibration mode. 
+If it is already <InlineImage src="products/dm-debugging-tool/image13.jpg" /> you don't have to switch to calibration mode.
+
+#### 3. 开始校准 (Start calibration) (Step 3)
+
+Click <InlineImage src="products/dm-debugging-tool/image14.jpg" /> button(Fig.3) to start the calibration program.
+
+#### 4. 观察校准波形 (Observe the calibration waveform) (Step 4)
+
+During the calibration process, observe the calibration waveform displayed in the waveform area on the right(Fig.4) to determine the calibration status.
+
+<InlineImage src="products/dm-debugging-tool/image79.jpg" />
+
+## CAN communication
+
+In this communication mode, you can read the version, upgrade the firmware, read and write parameters, import and export parameters, and debug the motor. <u>Currently, it only supports the Damiao USB to CAN debugger.</u>
+
+#### Features
+
+* Supports CAN 2.0 protocol, with selectable baud rates: 100/125/250/500/1000kbps
+* Supports standard frames (11-bit ID) and extended frames (29-bit ID)
+* Automatically identifies device nodes and supports multi-device networking (Master/Slave mode)
+
+### Read version
+
+<BlockImage src="products/dm-debugging-tool/image80.jpg" />
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为 CAN 通讯 (switch to CAN communication)(Step 2)
+
+At [USB 模式 (USB mode)], click
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> button (Fig.2) to switch communication mode to
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> mode. You don't have to switch communication mode is already
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> mode.
+
+#### 3. 输入 CAN ID (Input CAN ID) (Step 3)
+
+Enter the CAN ID of the target device (e.g., 0x00) in the CAN ID
+<InlineImage src="products/dm-debugging-tool/image81.jpg" /> input box (Fig.3). The system will automatically recognize the ID number and determine if the selected ID exists.
+
+#### 4. 点击读版本 (Read version) (Step 4)
+
+Click <InlineImage src="products/dm-debugging-tool/image8.jpg" /> button (Fig.4).
+
+#### 5. 查看固件和 bootloader 版本 (Check firmware and bootloader version) (step 5)
+
+<InlineImage src="products/dm-debugging-tool/image61.jpg" />
+
+### Update firmware
+
+<BlockImage src="products/dm-debugging-tool/image82.jpg" />
+
+#### Warnings
+
+1. Do not disconnect the power or break the connection during the update process.
+
+2. The firmware version must be matched to the motor model (see motor nameplate).
+
+3. If the update fails, use clear error and try again.
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为 CAN 通讯 (Switch to CAN communication) (Step 2)
+
+At [USB 模式 (USB mode)], click
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> button (Fig.2) to switch communication mode to
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> mode. You don't have to switch communication mode is already
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> mode.
+
+#### 3. 输入 CAN ID (Input CAN ID) (Step 3)
+
+Enter the CAN ID of the target device (e.g., 0x00) in the <InlineImage src="products/dm-debugging-tool/image81.jpg" /> input box (Fig.3). The system will automatically recognize the ID number and determine if the selected ID exists.
+
+#### 4. 选择要升级的固件 (Select the firmware to update) (Step 4)
+Click <InlineImage src="products/dm-debugging-tool/image10.jpg" /> button (Fig.4) and select the firmware version you want to update.
+
+#### 5. 查看固件名称是否正确 (Check if the firmware name is correct) (Step 5)
+
+<InlineImage src="products/dm-debugging-tool/image63.jpg" />
+
+This shows the firmware version is 5.0.1.7 and for 4310 motor.
+
+#### 6. 开始固件升级 (Start firmware update) (Step 6)
+
+Click <InlineImage src="products/dm-debugging-tool/image11.jpg" /> button (Fig.6) to start updating.
+
+<InlineImage src="products/dm-debugging-tool/image64.jpg" />
+
+View update progress.
+
+
+### Read parameters
+
+<BlockImage src="products/dm-debugging-tool/image83.jpg" />
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为 CAN 通讯 (Switch to CAN communication) (Step 2)
+
+At [USB 模式 (USB mode)], click
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> button (Fig.2) to switch communication mode to
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> mode. You don't have to switch communication mode is already
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> mode.
+
+#### 3. 输入 CAN ID (Input CAN ID) (Step 3)
+
+Enter the CAN ID of the target device (e.g., 0x00) in the <InlineImage src="products/dm-debugging-tool/image81.jpg" /> input box (Fig.3). The system will automatically recognize the ID number and determine if the selected ID exists.
+
+#### 4. 切换到调试标签页 (Switch to debug tab) (Step 4)
+
+Click the “Parameter Settings” tab at the top of the interface (Fig.4) to switch to the parameter settings page.
+
+#### 5. 读参数 (Read parameters) (Step 5)
+
+Click <InlineImage src="products/dm-debugging-tool/image66.jpg" /> button (Fig.4) to read the relevant parameters of the motor.
+
+### Write parameters
+
+<BlockImage src="products/dm-debugging-tool/image84.jpg" />
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+
+#### 2. 切换为 CAN 通讯 (Switch to CAN communication) (Step 2)
+
+At [USB 模式 (USB mode)], click
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> button (Fig.2) to switch communication mode to
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> mode. You don't have to switch communication mode is already
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> mode.
+
+
+#### 3. 输入 CAN ID (Input CAN ID) (Step 3)
+
+Enter the CAN ID of the target device (e.g., 0x00) in the <InlineImage src="products/dm-debugging-tool/image81.jpg" /> input box (Fig.3). The system will automatically recognize the ID number and determine if the selected ID exists.
+
+#### 4. 切换到调试标签页 (Switch to debug tab) (Step 4)
+
+Click the “Parameter Settings” tab at the top of the interface (Fig.4) to switch to the parameter settings page.
+
+
+#### 5. 修改参数 (Modify parameters) (Step 5)
+
+You can read the current parameter click <InlineImage src="products/dm-debugging-tool/image66.jpg" /> button or You can modify import parameters click 
+<InlineImage src="products/dm-debugging-tool/image16.jpg" /> button.
+
+<u>
+  Tips: Except for motor parameters, which cannot be modified, it is not recommended to modify the number of pole pairs (which is automatically identified after calibration). 
+  Exercise caution when modifying the reduction ratio.
+</u>
+
+#### 6. 写入参数 (Write parameters) (Step 6)
+
+After modifying parameters, click
+<InlineImage src="products/dm-debugging-tool/image68.jpg" /> button to write to the device.
+
+After successfully writing the parameters, the latest version will automatically perform  current parameters after reboot.
+At this point, you can observe an increase in the number of serial port receptions below, indicating that the reboot is complete.
+
+<u>
+  Writing parameters requires that the input parameters cannot be empty. 
+  It is recommended to first obtain the current parameters through the parameter reading or parameter import, and then modify them as needed. See the corresponding chapter for details.
+</u>
+
+### Parameter import and export
+
+<BlockImage src="products/dm-debugging-tool/image69.jpg" />
+
+#### 1. 读参数 (Read parameters) (Step 1)
+
+Click <InlineImage src="products/dm-debugging-tool/image66.jpg" /> button (Fig.4) to read the relevant parameters of the motor.
+
+#### 2. 修改参数 (Modify parameters) (Step 2)
+
+Modify the parameter values ​​as needed in the corresponding parameter boxes (such as control amplitude, speed KP, etc.).
+
+#### 3. 导出参数 (Export parameters) (Step 3)
+
+Click <InlineImage src="products/dm-debugging-tool/image70.jpg" /> button(Fig.3) to export and save the current parameters.
+
+#### 4. 清空数据 (Clear data) (Step 4)
+
+Click <InlineImage src="products/dm-debugging-tool/image71.jpg" /> button to clear relevant data.
+
+#### 5. 导入参数 (Import parameters) (Step 5)
+
+Click <InlineImage src="products/dm-debugging-tool/image16.jpg" /> button(Fig.5) to import the saved parameter file.
+
+Import (export) parameters are txt text files in the format [name:value]. Data with an empty value will be skipped during parameter import.
+
+Alternatively, you can modify the text file and then import.
+<span style={{color: 'red'}}>After importing the parameters, you need to write the parameters manually.</span>
+
+(e.g.):
+<InlineImage src="products/dm-debugging-tool/image72.jpg" />
+
+#### 6. 写入参数 (Write parameters) (Step 6)
+
+Click <InlineImage src="products/dm-debugging-tool/image68.jpg" /> button to write parameters to the device.
+
+### Motor debugging
+
+<BlockImage src="products/dm-debugging-tool/image85.jpg" />
+
+<br />
+
+<b>Tips</b>
+* (For a single device) CAN ID settings can also be made by reading the CAN ID area on the right.
+* (For multiple devices) When a CAN ID needs to be specified, it must be entered manually.
+
+<InlineImage src="products/dm-debugging-tool/image86.jpg" />
+
+#### 1. 打开串口 (Open serial port) (Step 1)
+
+[通讯设定 (Communication settings)] After configuring the serial port number, baud rate (e.g., 921600), data bits (8), parity bit (None), and stop bits (One) in the "Communication Settings" area, click
+<InlineImage src="products/dm-debugging-tool/image4.jpg" />button (Fig.1). And then the button changes to
+<InlineImage src="products/dm-debugging-tool/image58.jpg" /> indicates that the application has been successfully opened.
+
+#### 2. 切换为 CAN 通讯 (Switch to CAN communication) (Step 2)
+
+At [USB 模式 (USB mode)], click
+<InlineImage src="products/dm-debugging-tool/image7.jpg" /> button (Fig.2) to switch communication mode to
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> mode. You don't have to switch communication mode is already
+<InlineImage src="products/dm-debugging-tool/image60.jpg" /> mode.
+
+#### 3. 输入 CAN ID (Input CAN ID) (Step 3)
+
+Enter the CAN ID of the target device (e.g., 0x00) in the CAN ID
+<InlineImage src="products/dm-debugging-tool/image81.jpg" /> input box (Fig.3). The system will automatically recognize the ID number and determine if the selected ID exists.
+
+#### 4. 切换到调试标签页 (Switch to debug tab) (Step 4)
+
+Click the “Parameter Settings” tab at the top of the interface (Fig.4) to switch to the parameter settings page.
+
+#### 5. 电机使能 (Enable motor) (Step 5)
+
+Locate the "Motor Mode" area on the right side of the debugging page and click the <InlineImage src="products/dm-debugging-tool/image41.jpg" /> button (Fig.5).
+
+#### 6. 选择控制模式 (Select control mode) (Step 6)
+
+In the "Control Parameters" area, select the control mode such as "Position," "Speed," or "PVT" according to the actual application scenario of the motor <InlineImage src="products/dm-debugging-tool/image88.jpg" /> (Fig.6). It is necessary to ensure that the selected mode is consistent with the motor parameter settings to avoid control abnormalities.
+
+#### 7. 进行参数设置 (Parameter settings) (Step 7)
+
+After selecting the control mode, input values ​​in the corresponding parameter boxes (such as position, speed, torque, etc.) as needed, or adjust control parameters such as "KP", "KI", and "KD" (Fig.7) to complete the fine-tuning of motor operating parameters.
+
+As shown in the example, in position mode, the position parameter is set to 8 rad and the velocity parameter is set to 10 rad/s.
+
+<InlineImage src="products/dm-debugging-tool/image89.jpg" />
+
+#### 8. 发送数据 (Send data) (Step 8)
+
+After completing the parameter settings, click <InlineImage src="products/dm-debugging-tool/image22.jpg" /> button (Fig.8) to send the data to the target motor via the CAN bus, driving the motor to run according to the set parameters. If cyclic transmission is required, check <InlineImage src="products/dm-debugging-tool/image51.jpg" /> box and set the interval time (e.g. 1ms) to achieve continuous control.
+
+(e.g.) It can be observed that the motor moved to the 8 rad position at a speed of 10 rad/s.
+
+<InlineImage src="products/dm-debugging-tool/image90.jpg" />

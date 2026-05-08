@@ -1,0 +1,473 @@
+---
+description: DM-J4340-2EC English user manual
+---
+
+# DM-J4340-2EC geared motor
+
+```mdx-code-block
+import BlockImage from '@site/src/components/BlockImage';
+```
+
+[Original user manual（Chinese）](/pdf/products/dm-j4340-2ec-v1.0-zh.pdf)
+
+This website is licensed under the Apache License 2.0.
+No license is granted for this documentation or the original documentation.
+
+<BlockImage src="products/dm-j4340-2ec-v1.0/image1.jpeg" width="50%" />
+
+| Date | Version | Changes |
+|--|--|--|
+| 2024.03.14 | V1.0 | First version created |
+
+## Disclaimer
+
+Thank you for purchasing &trade;DAMIAO &trade;DM-J4340-2EC geared motor (hereinafter referred to as "the motor"). 
+Before using this product, please carefully read and follow this document and all safety guidelines provided by DAMIAO Technology. Failure to do so may cause harm to you and those around you, or damage to this product or other surrounding items.
+
+By using this product, you acknowledge that you have carefully read this document, understand, acknowledge, and accept all the terms and contents of this document and all related documents concerning this product.
+
+You promise to use this product only for legitimate purposes. You promise to assume full responsibility for the use of this product and any consequences that may arise.
+DAMIAO Technology shall not be liable for any damage, injury, or any legal liability caused directly or indirectly by the use of this product. 
+
+DAMIAO is a trademark of Shenzhen DAMIAO Technology Co., Ltd. Product names, brands, etc. Appearing in this document are trademarks of their respective companies. This product and manual are copyrighted by Shenzhen DAMIAO Technology Co. Ltd. Reproduction or reprinting without permission will be prohibited. The final interpretation right of this document and all related documents concerning this product belongs to Shenzhen DAMIAO Technology Co., Ltd. 
+
+Updates may be made without notice.
+
+## Warnings
+
+1. Please strictly operate in specified environment and keep the motor under maximum rated temperature. Otherwise, permanent and irreversible damage may occur.
+2. Prevent entering foreign objects into the rotor, as this will cause abnormal rotor operation.
+3. Before use, please check that all components are intact. If any parts are missing, aged, or damaged, please stop using the motor.
+4. Ensure correct wiring and the motor is installed correctly and securely.
+5. Do not touch the rotor during use to avoid any accidents. The motor will generate heat when outputting high torque, please take precautions to avoid burns.
+6. Please do not disassemble the motor. This will affect the motor's control accuracy and cause abnormal motor operation.
+
+## Features
+
+1. Dual encoder equipped, single-turn absolute position output provide no loss of absolute position during power outages
+2. Integrated motor and driver design, compact structure, and high integration
+3. Visualized debugging and firmware upgrades supported by Damiao debugging tools
+4. Readable motor speed, position, torque, and temperature information via CAN bus
+5. Dual temperature protection
+6. Supports trapezoidal acceleration and deceleration in position mode
+
+## Packing list
+
+1. Motor (built in driver) x1
+2. Power(with CAN communication terminals) connection cable: XT30(2+2)-F plug single end connection cable (100mm) ×1
+3. Serial port signal cable for debugging: GH1.25 connector - 3pin(Different side, 300mm) ×1
+
+## Interface and wiring specifications
+
+<table>
+  <thead>
+    <tr>
+      <th>Connector name-Number</th>
+      <th>Interface mark</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Power connector-1<br />（with CAN connector）</td>
+      <td rowspan="2"><BlockImage src="products/dm-j4340-2ec-v1.0/image2.jpeg" /></td>
+      <td rowspan="2">
+        <ol>
+          <li>Connect the power supply via the XT30(2+2)-F plug, with a rated voltage  24V to power the motor.</li>
+          <li>By connecting to an external control device via the CAN communication terminal, it can receive CAN control commands and provide feedback on motor status information.</li>
+          <li>
+            The motor has two power connectors. Either can be connected and used individually, or multiple motors can be connected in series, which makes wiring much easier.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>Power connector-2<br />（with CAN connector）</td>
+    </tr>
+    <tr>
+      <td>Debugging serial port-3</td>
+      <td><BlockImage src="products/dm-j4340-2ec-v1.0/image3.jpeg" /></td>
+      <td>
+        Connect to a PC by using the GH1.25 connector cable (-3 pin) and a USB to CAN debugging tool (or a USB to serial module). Use Damiao Technology debugging assistant to set motor parameters and upgrade firmware.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Motor dimension and installation
+
+Refer the motor mounting hole dimensions and locations to install the motor into the corresponding equipment.
+
+<BlockImage src="products/dm-j4340-2ec-v1.0/image4.jpeg" width="80%" />
+
+## States of indicator lamp
+
+<table>
+  <tbody>
+    <tr>
+      <td rowspan="2">Normal states</td>
+      <td>Static green</td>
+      <td>ERR bit is 1,Enable mode, working normally</td>
+    </tr>
+    <tr>
+      <td>Static red</td>
+      <td>ERR bit is 0, Disable mode</td>
+    </tr>
+    <tr>
+      <td>Abnormal states</td>
+      <td>Blink red</td>
+      <td>
+        <p>This indicates a fault, and the corresponding fault type is as shown:</p>
+        <ul>
+          <li>8------Over voltage</li>
+          <li>9------Under voltage</li>
+          <li>A------Over current</li>
+          <li>B------MOSFET Over temperature</li>
+          <li>C------Coil over temperature</li>
+          <li>D------Communication lost</li>
+          <li>E------Overloaded</li>
+        </ul>
+        <p>You can check the feedback frame and figure out which fault has occurred via Damiao Technology debugging assistant interface.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Operating modes
+
+### MIT mode
+
+The MIT mode is designed for compatible with the original MIT mode, allowing for seamless switching for flexibly setting the control range (P_MAX, V_MAX, T_MAX).
+
+The driver converts the received CAN data into control variables, calculates the torque value, and uses it as the current setpoint for the current loop. The current loop then adjusts according to its regulation rules to ultimately achieve the given torque current. Its control block diagram is as follows:
+
+<BlockImage src="products/dm-j4340-2ec-v1.0/image5.jpeg" width="80%" />
+
+Based on the MIT (Mutual Aspect Ratio) model, various control modes can be derived. For example, when kp=0 and kd is not 0, a given v_des will achieve uniform rotation. When kp=0 and kd=0, a given t_ff will achieve a given torque output.
+
+**Note: When controlling the position, kd cannot be set to 0.**
+**Otherwise it will cause the motor vibrate or go out of control.**
+
+### Position speed mode
+
+The position cascade mode employs a three-loop series control method. The position loop acts as the outermost loop, and its output serves the reference for the speed loop. The output of the speed loop serves the reference for the inner current loop, controlling the actual current output. The control block diagram is shown below:
+
+<BlockImage src="products/dm-j4340-2ec-v1.0/image6.jpeg" width="80%" />
+
+p_des is the target position to be controlled, and v_des is the maximum absolute velocity value during the motion process.
+
+Using the control parameters recommended by the debugging assistant during the position cascade mode, it can achieve good control accuracy and a relatively smooth control, but the response time is relatively long. 
+In addition to v_des, configurable parameters include acceleration/deceleration settings. 
+These parameters can compensate unexpected oscillations during control.
+
+**Note: p_des and v_des are in units of rad and rad/s respectively, and type float.**
+**The damping factor must be set to non-zero positive value. Please refer to the notes for speed mode.**
+
+### Speed mode
+
+The speed mode allows the motor to turn continuously setting target speed. The control block diagram is shown below:
+
+<BlockImage src="products/dm-j4340-2ec-v1.0/image7.jpeg" width="70%" />
+
+**Note: The unit of v_des is rad/s, and type of the data is float.**
+**If you need to use the debugging assistant to automatically calculate parameters, you need to set the damping factor to a non-zero positive value. Typically, the value is between 2.0 and 10.0.**
+**Too small damping factor will cause oscillation and large overshoot, while too large damping factor will cause a long rise time. The recommended setting is 4.0.**
+
+## Use
+
+The control uses the CAN standard frame format with a fixed baud rate of 1 Mbps. 
+It is divided into receive frames and feedback frames. Receive frames contain the received control data, used to command and control the motor.
+feedback frames contain the motor's status data sent to the upper-level controller. Depending on the selected motor mode, the receive frame format and frame IDs are different, but the feedback frame is the same across all modes.
+
+### Feedback frame
+
+The feedback frame ID is set by the debugging assistant (Master ID), with a default value 0. It mainly provides motor's position, speed, and torque information, and its frame format is defined as follows:
+
+| Feedback message | D[0] | D[1] | D[2] | D[3] | D[4] | D[5] | D[6] | D[7] |
+|--|--|--|--|--|--|--|--|--|
+| MST_ID | ID\|ERR&lt;&lt;4 | POS[15:8] | POS[7:0] | VEL[11:4] | VEL[3:0]\|T[11:8] | T[7:0] | T_MOS | T_Rotor |
+
+
+ID represents controller's ID, It is come from CAN_ID's lower 8 bit.
+
+* ERR
+
+  It shows fault,The corresponding fault type is as shown:
+  * 0------Disable
+  * 1------Enable
+  * 8------Over voltage
+  * 9------Under voltage
+  * A------Over current
+  * B------MOSFET Overheat
+  * C------Coil Overheat
+  * D------Communication lost
+  * E------Overloaded
+
+* POS: Motor position 
+* VEL: Motor speed
+* T: Motor output torque
+* T_MOS: Average temperature of MOSFETS mounted on the driver (unit: degree)
+* T_Rotor: Average temperature of Motor's coil（unit: degree）
+
+Position, velocity, and torque are converted from floating-point data into signed fixed-point data using a linear mapping method.
+Position using 16 bit data and velocity and torque using 12 bit data.
+
+### Control frame in MIT mode
+
+| Control message | D[0] | D[1] | D[2] | D[3] | D[4] | D[5] | D[6] | D[7] |
+|--|--|--|--|--|--|--|--|--|
+| ID | p_des[15:8] | p_des[7:0] | v_des[11:4] | v_des[3:0]\|Kp[11:8] | Kp[7:0] | Kd[11:4] | Kd[3:0]\|t_ff[11:8] | t_ff[7:0] |
+
+The frame ID is as same as the CAN_ID set by debugging assistant.
+
+* p_des：Desired position
+* v_des：Desired speed
+* Kp：Proportional control ratio for position control
+* Kd：Derivative control ration for speed control
+* t_ff：Feed forward torque value
+
+Each parameter conforms to the mapping method in the previous section. The numbers of p_des, v_des, and t_ff can be set by the debugging assistant. 
+
+The range of Kp is [0, 500], and the range of Kd is [0, 5].
+
+Assignment: CAN number is only one level, with 8 characters, MIT's restraint command format:
+Position, Velocity, Kp, Kd, ​​Torque. Among them:
+Position 2 characters 16 bits, Velocity 12 bits, Kp 12 bits, Kd 12 bits
+
+### Control frame of Position speed mode
+
+<table>
+  <thead>
+    <tr>
+      <th>Control message</th>
+      <th>D[0]</th>
+      <th>D[1]</th>
+      <th>D[2]</th>
+      <th>D[3]</th>
+      <th>D[4]</th>
+      <th>D[5]</th>
+      <th>D[6]</th>
+      <th>D[7]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+     <td>0x100+ID</td>
+     <td colspan="4">p_des</td>
+     <td colspan="4">v_des</td>
+    </tr>
+  </tbody>
+</table>
+
+The frame ID is the set CAN ID value plus an offset of 0x100.
+
+* p_des：Target position, floating-point type LSB first,MSB last (little endian).
+* v_des：Target speed, floating-point type LSB first,MSB last (little endian).
+
+The CAN ID for the command here is 0x100+ID. The target speed is the highest speed of trapezoidal acceleration, which is the speed value of the constant speed segment.
+
+### Speed mode control frame
+
+<table>
+  <thead>
+    <tr>
+      <th>Control message</th>
+      <th>D[0]</th>
+      <th>D[1]</th>
+      <th>D[2]</th>
+      <th>D[3]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0x200+ID</td>
+      <td colspan="4">v_des</td>
+    </tr>
+  </tbody>
+</table>
+
+The frame ID is the set CAN ID value plus an offset of 0x200.
+
+* v_des：Target speed, floating-point type LSB first,MSB last (little endian).
+
+The CAN ID for the command here is 0x200+ID.
+
+## Use Damiao Technology Debugging Assistant
+
+Connect the computer and the motor via Damiao Technology USB-CAN debugging tool.  
+You can set the motor parameters and upgrade the firmware from Damiao Technology assistant.
+
+The motor debugging serial port is connected to the PC via the GH1.25 connector cable -3pin. The CAN communication terminal in the motor power interface is connected to the USB to CAN debugging tool via the XT30 (2+2)-F connector cable. The motor parameters are set and firmware is upgraded using the Damiao Technology debugging assistant.
+
+After connecting the motor's serial port, CAN port, and power interface, open the Damiao Technology Debugging Assistant on the computer. Select the corresponding serial port device, and open the serial port.
+Then, supply power to the motor, the serial port will print information, with "Control Mode" indicating the current drive mode.
+
+## Motor parameters
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Characteristic parameters</th>
+      <th>DM-J4340-2EC（24V）</th>
+      <th>DM-J4340-2EC（48V）</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th rowspan="7">Motor parameters</th>
+      <td>Rated voltage</td>
+      <td>24V</td>
+      <td>48V</td>
+    </tr>
+    <tr>
+      <td>Rated current</td>
+      <td>2.5A</td>
+      <td>2.5A</td>
+    </tr>
+    <tr>
+      <td>Peak current</td>
+      <td>8A</td>
+      <td>8A</td>
+    </tr>
+    <tr>
+      <td>Rated torque</td>
+      <td>9NM</td>
+      <td>9NM</td>
+    </tr>
+    <tr>
+      <td>Peak torque</td>
+      <td>27NM</td>
+      <td>27NM</td>
+    </tr>
+    <tr>
+      <td>Rated speed</td>
+      <td>36rpm</td>
+      <td>36rpm</td>
+    </tr>
+    <tr>
+      <td>Maximum speed at non-loaded condition</td>
+      <td>52rpm</td>
+      <td>100rpm</td>
+    </tr>
+
+    <tr>
+      <th rowspan="4">Motor characteristics</th>
+      <td>Reduction ratio</td>
+      <td>40:1</td>
+      <td>40:1</td>
+    </tr>
+    <tr>
+      <td>Number of pole pairs</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Phase inductance</td>
+      <td>317μH</td>
+      <td>317μH</td>
+    </tr>
+    <tr>
+      <td>Phase resistance</td>
+      <td>760mΩ</td>
+      <td>760mΩ</td>
+    </tr>
+
+    <tr>
+      <th rowspan="3">Structure and weight</th>
+      <td>Outer diameter</td>
+      <td>57mm</td>
+      <td>57mm</td>
+    </tr>
+    <tr>
+      <td>Height</td>
+      <td>53.3mm</td>
+      <td>53.3mm</td>
+    </tr>
+    <tr>
+      <td>Weight</td>
+      <td>362g approx</td>
+      <td>362g approx</td>
+    </tr>
+
+    <tr>
+      <th rowspan="3">Encoders</th>
+      <td>Encoder's resolution</td>
+      <td>14 bit</td>
+      <td>14 bit</td>
+    </tr>
+    <tr>
+      <td>Number of encoders</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Encoder type</td>
+      <td>Magnetic (single lap)</td>
+      <td>Magnetic (single lap)</td>
+    </tr>
+
+    <tr>
+      <th rowspan="2">Communication</th>
+      <td>Control interface</td>
+      <td colspan="2">CAN@1Mbps</td>
+    </tr>
+    <tr>
+      <td>Parameter adjust interface</td>
+      <td colspan="2">UART@921600bps</td>
+    </tr>
+
+    <tr>
+      <th rowspan="9">Control and protection</th>
+      <td rowspan="3">Control mode</td>
+      <td colspan="2">MIT mode</td>
+    </tr>
+    <tr>
+      <td colspan="2">Speed mode</td>
+    </tr>
+    <tr>
+      <td colspan="2">Position mode</td>
+    </tr>
+    <tr>
+      <td rowspan="6">Protection</td>
+      <td colspan="2">
+        Driver overheat protection: The protection temperature is 120℃. If the temperature exceeds this limit, the motor will exit "Enable mode".
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	Motor overheat protection. It should be set according to requirements of usage however recommended not to exceed 100℃.
+        Over-temperature protection will cause the motor to exit "Enable mode".
+      </td>
+    </tr>
+    <tr>
+      <td>
+	Motor overvoltage protection should be set according to usage requirements, but it is recommended not to exceed 32V. 
+	Overvoltage will exit "Enable mode".
+      </td>
+      <td>
+	Motor overvoltage protection should be set according to usage requirements, but it is recommended not to exceed 52V. 
+	Overvoltage will exit "Enable mode".
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	Communication loss protection: If no CAN command is received within a set period, the system will automatically exit "Enable mode".
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        Motor overcurrent protection: It should be set according to usage requirements, but it is recommended not to exceed 9.8A. Overcurrent will exit "Enable mode".
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Motor undervoltage protection: If the power supply voltage is lower than the set value, the "Enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
+      </td>
+      <td>
+        Motor undervoltage protection: If the power supply voltage is lower than the set value, the "Enable mode" will be exited. It is recommended that the power supply voltage not be lower than 15V.
+      </td>
+    </tr>
+  </tbody>
+</table>

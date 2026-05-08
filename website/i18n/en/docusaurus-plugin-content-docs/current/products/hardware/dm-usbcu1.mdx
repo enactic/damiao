@@ -1,0 +1,484 @@
+---
+description: DM-USBCU1 USB-CAN converter module English user manual
+---
+
+# DM-USBCU1 USB-CAN converter module
+
+```mdx-code-block
+import BlockImage from '@site/src/components/BlockImage';
+```
+
+[Original user manual（Chinese）](/pdf/products/dm-usbcu1.pdf)
+
+This website is licensed under the Apache License 2.0.
+No license is granted for this documentation or the original documentation.
+
+## USB-CAN converter software
+
+Please refer to the USB-CAN converter software <u>[here](../software/usb-can-conversion-software)</u>.
+
+## Specifications
+
+<table>
+  <tbody>
+    <tr>
+      <th>Size</th>
+      <td>4x2x1cm</td>
+    </tr>
+    <tr>
+      <th>Model</th>
+      <td>DM-USBCU1</td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td>CAN bus</td>
+    </tr>
+    <tr>
+      <th>Brand</th>
+      <td>Damiao</td>
+    </tr>
+    <tr>
+      <th>Production</th>
+      <td>China</td>
+    </tr>
+    <tr>
+      <th>Use case</th>
+      <td>USB-UART conversion<br />USB-CAN conversion<br />CAN analyzing</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>
+        Module【V3.0】 + UART-3P cable + CAN-2P cable<br />
+        CAN isolation upgraded
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Conversion of USB to CAN frame（V2.0）
+
+### CAN frame data format
+
+<table>
+  <thead>
+    <tr><th colspan="23">CAN frame data format</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">Frame header</td>
+      <td>Frame length</td>
+      <td>Command</td>
+      <td colspan="4">Number of transmission</td>
+      <td colspan="4">Time period</td>
+      <td>ID type</td>
+      <td colspan="4">CAN ID</td>
+      <td>Frame type</td>
+      <td>idAcc</td>
+      <td>dataAcc</td>
+      <td>len</td>
+      <td>data[len]</td>
+      <td>CRC</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data2</td>
+      <td>Data3</td>
+      <td>Data4</td>
+      <td>Data5</td>
+      <td>Data6</td>
+      <td>Data7</td>
+      <td>Data8</td>
+      <td>Data9</td>
+      <td>Data10</td>
+      <td>Data11</td>
+      <td>Data12</td>
+      <td>Data13</td>
+      <td>Data14</td>
+      <td>Data15</td>
+      <td>Data16</td>
+      <td>Data17</td>
+      <td>Data18</td>
+      <td>Data19</td>
+      <td>Data20</td>
+      <td>Data21~Data28</td>
+      <td>Data29</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td>8bit</td>
+      <td>8bit</td>
+      <td colspan="4">32bit</td>
+      <td colspan="4">16bit</td>
+      <td>8bit</td>
+      <td colspan="4">32bit</td>
+      <td>8bit</td>
+      <td></td>
+      <td></td>
+      <td>8bit</td>
+      <td>8bit * 8</td>
+      <td>8bit</td>
+    </tr>
+    <tr>
+      <td>55</td>
+      <td>AA</td>
+      <td>1e</td>
+      <td>01</td>
+      <td>01</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>0a</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>00</td>
+      <td>08</td>
+      <td>data[8]</td>
+      <td>crc</td>
+    </tr>
+  </tbody>
+</table>
+
+* Command
+  * 0x01 CAN data frame transmit
+  * 0x02 Handshake PC and device, device returns OK
+  * 0x03 Non-feedback CAN forwarding, no feedback on transmission status
+* ID type
+  * 00 Standard frame
+  * 01 Extended frame
+* Frame type
+  * 00 Data frame
+  * 01 Remote frame
+
+Note: Other formats are serial transmission data
+
+e.g.
+
+```
+55 aa 1e 01 01 00 00 00 0a 00 00 00 00 00 00 00 00 00 08 00 00 12 23 34 45 56 67 78 89 88
+```
+
+### Baud rate setup command for serial port
+
+<table>
+  <thead>
+    <tr><th colspan="11">Baud rate setting command for serial port</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">Frame header</td>
+      <td colspan="4">baudrate</td>
+      <td>databit</td>
+      <td>stopbit</td>
+      <td>parity</td>
+      <td colspan="2">Frame footer</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data2</td>
+      <td>Data3</td>
+      <td>Data4</td>
+      <td>Data5</td>
+      <td>Data6</td>
+      <td>Data7</td>
+      <td>Data8</td>
+      <td>Data9</td>
+      <td>Data10</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td colspan="4">32bit</td>
+      <td>8bit</td>
+      <td>8bit</td>
+      <td>8bit</td>
+      <td colspan="2">16bit</td>
+    </tr>
+    <tr>
+      <td>0x55</td>
+      <td>0xAA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>0xAA</td>
+      <td>0x55</td>
+    </tr>
+  </tbody>
+</table>
+
+```c
+typedef struct {
+  uint32_t baudrate; // Baud rate
+  uint8_t databit; // Data bit
+  uint8_t stopbit; // Stop bit
+  uint8_t parity; // Parity
+} Baudrate_set_data;
+```
+
+```c
+// Data length setting
+// 0: 8bit
+// 1: 9bit
+switch(setdata_t->databit)
+{
+case 0u:
+  stcInitCfg.enDataLength = UsartDataBits8;
+  break;
+case 1u:
+  stcInitCfg.enDataLength = UsartDataBits9;
+  break;
+default:
+  stcInitCfg.enDataLength = UsartDataBits8;
+  break;
+}
+
+// Parity setting
+switch(setdata_t->parity)
+{
+case 0u:
+  stcInitCfg.enParity = UsartParityNone;
+  break;
+case 1u:
+  stcInitCfg.enParity = UsartParityEven;
+  break;
+case 2u:
+  stcInitCfg.enParity = UsartParityOdd;
+  break;
+default:
+  stcInitCfg.enParity = UsartParityNone;
+  break;
+}
+
+// Stop bit setting
+switch(setdata_t->stopbit)
+{
+case 0u:
+  stcInitCfg.enStopBit = UsartOneStopBit;
+  break;
+case 1u:
+  stcInitCfg.enStopBit = UsartTwoStopBit;
+  break;
+default:
+  stcInitCfg.enStopBit = UsartTwoStopBit;
+  break;
+}
+```
+
+### CAN baudrate setting command
+
+<table>
+  <thead>
+    <tr><th colspan="5">CAN baudrate setting command</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">Frame header</td>
+      <td>Index</td>
+      <td colspan="2">Frame footer</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data2</td>
+      <td>Data3</td>
+      <td>Data4</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td>8bit</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>0x55</td>
+      <td>0x05</td>
+      <td></td>
+      <td>0xAA</td>
+      <td>0x55</td>
+    </tr>
+  </tbody>
+</table>
+
+| Index | Baud rate | Ideal CIA | Real CIA |
+|--|--|--|--|
+| index0  | 1000kbps |   75% |   75% |
+| index1  |  800kbps |   80% |   80% |
+| index2  |  666kbps |   80% | 83.3% |
+| index3  |  500kbps | 87.5% | 87.5% |
+| index4  |  400kbps | 87.5% |   85% |
+| index5  |  250kbps | 87.5% | 87.5% |
+| index6  |  200kbps | 87.5% |   85% |
+| index7  |  125kbps | 87.5% | 87.5% |
+| index8  |  100kbps | 87.5% | 87.5% |
+| index9  |   80kbps | 87.5% | 86.5% |
+| index10 |   50kbps | 87.5% | 87.5% |
+| index11 |   40kbps | 87.5% |   85% |
+| index12 |   20kbps | 87.5% |   85% |
+| index13 |   10kbps | 87.5% |   85% |
+| index14 |    5kbps | 87.5% | 87.5% |
+
+### Heart beat communication between PC and device
+
+<table>
+  <thead>
+    <tr><th colspan="6">Heart beat communication between PC and device</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">Frame header</td>
+      <td colspan="2">Frame footer</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data3</td>
+      <td>Data4</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>0x55</td>
+      <td>0x04</td>
+      <td>0xAA</td>
+      <td>0x55</td>
+    </tr>
+  </tbody>
+</table>
+
+Note: IF CMD is 00 in CAN data, other CAN data are invalid.
+
+### CAN transmission terminate（when transmitting periodically）
+
+<table>
+  <thead>
+    <tr><th colspan="6">CAN transmission terminate（when transmitting periodically）</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2">Frame header</td>
+      <td colspan="2">Frame footer</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data3</td>
+      <td>Data4</td>
+    </tr>
+    <tr>
+      <td colspan="2">16bit</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>0x55</td>
+      <td>0x03</td>
+      <td>0xAA</td>
+      <td>0x55</td>
+    </tr>
+  </tbody>
+</table>
+
+Note: This will terminate current transmission
+
+### CAN receive data frame format
+
+<table>
+  <thead>
+    <tr><th colspan="16">CAN frame data format</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Frame header</td>
+      <td>Command</td>
+      <td>Format</td>
+      <td colspan="4">CAN ID</td>
+      <td colspan="8">Data</td>
+      <td>Frame footer</td>
+    </tr>
+    <tr>
+      <td>Data0</td>
+      <td>Data1</td>
+      <td>Data2</td>
+      <td>Data3</td>
+      <td>Data4</td>
+      <td>Data5</td>
+      <td>Data6</td>
+      <td>Data7</td>
+      <td>Data8</td>
+      <td>Data9</td>
+      <td>Data10</td>
+      <td>Data11</td>
+      <td>Data12</td>
+      <td>Data13</td>
+      <td>Data14</td>
+      <td>Data15</td>
+    </tr>
+    <tr>
+      <td>AA</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>55</td>
+    </tr>
+  </tbody>
+</table>
+
+CAN command:
+* 00 Heartbeat
+* 0x01 Receive failed
+* 0x11 Receive succeeded
+* 0x02 Transmit failed
+* 0x12 transmit succeeded
+* 0x03 Baud rate setting failed
+* 0x13 Baud rate setting succeeded
+
+Format: It includes data length and data frame type.
+
+See the structure below for details.
+
+```c
+// CAN return data format
+typedef struct // CAN send function related structures 16 bytes
+{
+  uint8_t frameHeader;  // Send flag 0xAA
+  uint8_t CMD;          // CAN command
+  uint8_t canDataLen:6; // Data length
+  uint8_t canIde:1;     // ide: 0 Standard、1 Extended
+  uint8_t canRtr:1;     // rtr: 0 Data frame、1 Remote frame
+  uint32_t CANID;       // CAN ID
+  uint8_t canData[8];   // CAN data
+  uint8_t freamEnd;     // End 0x55
+} CAN_Fream;
+```
+
+e.g.
+
+```
+AA 11 08 00 00 00 00 00 01 02 03 04 05 06 07 55
+```
