@@ -24,7 +24,7 @@ We pursue the circulation of rare resources and reduce environmental impact.
 ## Shipping destination
 
 〒101-0021
-Dai-ichi dempa building 8th floor<br />
+Dai-ichi Dempa building 8th floor<br />
 Soto-Kanda 2-4-4<br />
 Chiyoda-ku Tokyo<br />
 
