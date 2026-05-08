@@ -13,7 +13,7 @@ npm ci
 Japanese page:
 
 ```bash
-npm run serve
+npm run start
 ```
 
 English page:
