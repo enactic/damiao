@@ -4,14 +4,14 @@ sidebar_position: 3
 
 # Recycling used motors
 
-As Damiao motor's dealing company, we are providing used motor's recycling operation.
+As a company that sells Damiao motors, we provide used motor recycling services.
 
 ## Background
 
-High-performance brushless motors including Damiao motors, utilize neodymium magnets.
+High-performance brushless motors, including Damiao motors, utilize neodymium magnets.
 Neodymium is a rare resource, and its extraction and refining processes are known to have a significant environmental impact.
 
-We are thinking It's a great responsibility to provide materials recycling system as motor selling company.
+We believe it is our responsibility as a motor supplier to provide a material recycling system.
 
 ## Recycling process
 
