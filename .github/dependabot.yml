@@ -33,3 +33,8 @@ updates:
       docusaurus:
         patterns:
           - "@docusaurus/*"
+      # React and react-dom should be updated together to avoid version mismatches
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
