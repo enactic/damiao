@@ -17,6 +17,7 @@ on:
   push:
     branches:
       - '**'
+      - '!copilot/**'
       - '!dependabot/**'
   pull_request:
 concurrency:
